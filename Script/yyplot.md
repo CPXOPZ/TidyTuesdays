@@ -1,3 +1,4 @@
+## install 
 ```r
 install.packages('devtools')
 
@@ -6,7 +7,7 @@ devtools::install_github('YuLab-SMU/ggtree')
 devtools::install_github('GuangchuangYu/yyplot')
 ```
 
-pubmed_trend via yyplot
+## pubmed_trend via yyplot
 ```r
 library(yyplot)
 term <- c('"H7N9"', '"H5N1"', '"RSV"')
