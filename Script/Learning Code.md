@@ -123,6 +123,15 @@ plot(p)
 dev.off()
 ```
 
+### cairo
+
+PDF 字体镶嵌，PNG解决可能问题（其他软件分辨率或尺寸问题）
+
+```R
+ggsave(..., filename = "whatever.pdf", ..., device = cairo_pdf)
+ggsave(..., filename = "whatever.png", ..., dpi = 300, type = "cairo")
+```
+
 ### 解决：调用R设备绘pdf图第一页是空白页
 
 ```r
