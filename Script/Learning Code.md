@@ -97,6 +97,18 @@ theme(text=element_text(family="TNR", face="bold", size=12))
 
 ## 拼图
 
+### 图例 legend 用于拼图
+
+```R
+library(cowplot)
+# 提取legend对象
+legend = cowplot::get_legend(p2)
+# 用于拼图
+plot_grid(p3, p4, plot_grid(legend),
+                   rel_widths=c(1, 1, 0.28),
+                   nrow = 1, align = "h")
+```
+
 ### gridExtra
 
 ```R

@@ -36,3 +36,15 @@ library(rvcheck)
 o(f)
 ```
 
+### 图例 legend 调整
+
+```R
+library(cowplot)
+# 提取legend对象
+legend = cowplot::get_legend(p2)
+# 用于拼图
+cowplot::plot_grid(p3, p4, plot_grid(legend),
+                   rel_widths=c(1, 1, 0.28),
+                   nrow = 1, align = "h")
+```
+
