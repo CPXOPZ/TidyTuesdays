@@ -36,15 +36,27 @@ library(rvcheck)
 o(f)
 ```
 
-### 图例 legend 调整
+### ggplotify 图例 legend
 
 ```R
-library(cowplot)
-# 提取legend对象
+col = colorspace::rainbow_hcl(3)
+names(col) = unique(iris$Species)
+
+library(ggplotify)
+color = col[iris$Species]
+
+# 转换为ggolot对象
+p = as.ggplot(~plot(iris$Sepal.Length, iris$Sepal.Width, col=color, pch=15))
+
+library(ggplot2)
+p2 = ggplot(iris, aes(Sepal.Length, Sepal.Width, color=Species)) +
+    geom_point() + scale_color_manual(values=col, name="")
+
 legend = cowplot::get_legend(p2)
-# 用于拼图
-cowplot::plot_grid(p3, p4, plot_grid(legend),
-                   rel_widths=c(1, 1, 0.28),
-                   nrow = 1, align = "h")
+
+# 嵌套
+p + ggimage::geom_subview(x=.7, y=.6, subview=legend)
+
+#这里用base plot画了一个图，又用ggplot2画了一个，用cowplot把legend抽出来，然后再用我的另一个包ggimage进行图上嵌图
 ```
 
