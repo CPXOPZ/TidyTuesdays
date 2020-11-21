@@ -36,7 +36,7 @@ library(rvcheck)
 o(f)
 ```
 
-### ggplotify 图例 legend
+### ggplotify 插入 图例 legend
 
 ```R
 col = colorspace::rainbow_hcl(3)
