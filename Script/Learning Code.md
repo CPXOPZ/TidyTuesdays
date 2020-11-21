@@ -109,6 +109,18 @@ plot_grid(p3, p4, plot_grid(legend),
                    nrow = 1, align = "h")
 ```
 
+### 在图形内部绘图
+
+```R
+# 用于创建grob对象的函数，参数x是一个ggplot对象：
+ggplotGrob(x)
+
+# 添加注释（annotate）的方式，向一个图形内部添加一个图形：
+annotation_custom(grob, xmin = -Inf, xmax = Inf, ymin = -Inf,  ymax = Inf)
+```
+
+
+
 ### gridExtra
 
 ```R
