@@ -21,4 +21,6 @@ hike <- hike %>%
          gain = as.numeric(gain),
          highpoint = as.numeric(highpoint),
          rating = as.numeric(rating))
-  
+# stringr character
+hike %>% 
+  mutate(location = str_extract(location, "[a-z]+"))
