@@ -21,6 +21,17 @@
 
 ## R
 
+### here::here()
+
+```R
+here::here()
+[1] “/Users/jenny/Desktop/project”
+data <- read_csv(here("datafolder", "datafile.csv"))
+data <- read_csv(here("datafolder", "subfolder", "datafile.csv"))
+data <- read_csv(here("./datafolder/datafile.csv"))
+data <- read_csv(here("/datafolder/datafile.csv"))
+```
+
 ### update R
 
 ```R
@@ -41,11 +52,32 @@ rvcheck::update_all()
 
 ```R
 janitor::clean_names()
+# 自动修复从非R友好数据源导入的**麻烦列名**
 # 空格更改为下划线，[下划线在R变量名称中是合法的（句点也是如此）] 
 # 所有以前以数字开头的列名现在都以x开头
 ```
 
+### str_to_*** 系列
 
+对字符进行操作，符合各种格式
+`upper` 大写
+`lower` 小写
+`title` 实词首字母大写
+`sentence` 句首大写
+
+### 排序相关函数：sort()，rank()，order()
+
+sort(x)是对向量x进行排序，返回值**排序后**的数值向量。
+rank()是求秩的函数，它的返回值是这个向量中对应元素的"**排名**"。
+而order()的返回值是对应“排名”的元素所在向量中的**位置**。
+
+### row_number()相关
+
+```R
+row_number(): equivalent to rank(ties.method = "first") #属于dplyr包
+mutate 赋值=row_number() 直接为行数值
+select 中筛选 row_number() == 10L
+```
 
 ### 变量转换为因子（分类）
 
@@ -91,8 +123,21 @@ plot(x, y, family="TNR", main = "title", font=2)
 
 ggplot2，我们需要设定主题theme。
 
-```
+```R
 theme(text=element_text(family="TNR", face="bold", size=12))
+```
+
+### Color 
+
+```R
+# ggsci
+scale_color_jama()
+pal_nejm()# nejm/lancet/d3--分类Discrete
+pal_d3("category20")(20)
+lancet
+scale_fill_gsea()
+# RColorBrewer
+brewer.pal(5, 'Dark2')# set
 ```
 
 ## 拼图
@@ -258,6 +303,16 @@ kruskal.test(y ~ A, data)
 friedman.test(y ~ A | B, data)
 
 ```
+
+### table
+
+| table（var1，var2,…，varN）    | 使用N个类别变量（因子）,创建一个N维列联表       |
+| ------------------------------ | ----------------------------------------------- |
+| xtabs（forula，data）          | 根据一个公式和一个矩阵或数据框创建一个N维列联表 |
+| prop.table（table，margins）   | 依margins定义的边际列表中条目表示为分数形式     |
+| margin.table（table，margins） | 依margins定义的边际列表计算表中条目的和         |
+| addmargins（table，margins）   | 将概述边margins放入表中                         |
+| ftable（table）                | 创建一个紧凑的”平铺“式列联表                    |
 
 ### 几何平均数
 
