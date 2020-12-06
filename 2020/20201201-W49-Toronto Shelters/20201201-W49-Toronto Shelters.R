@@ -15,6 +15,8 @@ skimr::skim(shelters)
 # 1 province  4 city 5 sector  33 organization_name  65 shelter_name & address
 # 114 shelter_name  155program_name
 
+## 大失误，日期数据未重视，本数据是随时期变化的纵向数据，教训教训！！！
+
 # city with only one shelter sector
 
 tron <- shelters %>% 
