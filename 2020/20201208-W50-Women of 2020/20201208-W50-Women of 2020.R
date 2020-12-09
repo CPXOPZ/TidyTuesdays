@@ -12,7 +12,6 @@ skimr::skim(women)
 library("sf")
 library("rnaturalearth")
 library("rnaturalearthdata")
-library(stringr)
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 class(world)
@@ -20,6 +19,8 @@ class(world)
 ggplot(data = world) +
   geom_sf()
 
+##
+library(stringr)
 map <- women %>% 
   filter(country != "Worldwide") %>% 
   count(country, sort =T) %>% 
@@ -37,14 +38,16 @@ map <- women %>%
     TRUE ~ country)) %>% 
   left_join(world, ., by = c("name"="country"), keep = T) %>% 
   filter(!is.na(country))
-  
 
+library(viridis)
 ggplot() +
   geom_sf(data = world)+
-  geom_sf(data = map, color = n)+
-  scale_color_continuous()+
-  theme_void()
-
+  geom_sf(data = map, aes(fill = n))+
+  scale_fill_viridis_c()+
+  theme_void()+
+  labs(title = "Women of 2020",
+       fill = "Num")
+  
 women %>% 
   filter(country != "Worldwide") %>% 
   count(category, sort = T) %>% 
@@ -57,4 +60,13 @@ women %>%
   ggsci::scale_fill_jama()+
   ggsci::scale_color_jama()+
   theme_ipsum()
-  
+
+ggdraw
+
+ggsave(here::here("2020/20201208-W50-Women of 2020", "20201208-W50-Women_of_2020.png"),
+       width = ,
+       height = ,
+       units = ,
+       dpi = "retina",
+       type = ragg::agg_png())
+
