@@ -39,34 +39,34 @@ map <- women %>%
   left_join(world, ., by = c("name"="country"), keep = T) %>% 
   filter(!is.na(country))
 
-library(viridis)
-ggplot() +
+mapplot <- ggplot() +
   geom_sf(data = world)+
   geom_sf(data = map, aes(fill = n))+
-  scale_fill_viridis_c()+
+  ggsci::scale_fill_material("pink")+
   theme_void()+
   labs(title = "Women of 2020",
        fill = "Num")
   
-women %>% 
+barplot <- women %>% 
   filter(country != "Worldwide") %>% 
   count(category, sort = T) %>% 
   ggplot(aes(forcats::fct_reorder(category, n), n))+
-  geom_bar(aes(fill = category, color = category), stat="identity", show.legend = F)+
+  geom_bar(fill = "pink", color = "pink", stat="identity", show.legend = F)+
   coord_flip()+
   labs(x = "Category",
-       y = "Number",
-       title = "Category distribution")+
-  ggsci::scale_fill_jama()+
-  ggsci::scale_color_jama()+
+       y = "Number")+
   theme_ipsum()
 
-ggdraw
+library(cowplot)
+ggdraw()+
+  draw_plot(mapplot)+
+  draw_plot(barplot, x = 0.005, y = .125, width = .3, height = .41)
+  
 
 ggsave(here::here("2020/20201208-W50-Women of 2020", "20201208-W50-Women_of_2020.png"),
-       width = ,
-       height = ,
-       units = ,
+       width = 30,
+       height = 15,
+       units = "cm",
        dpi = "retina",
        type = ragg::agg_png())
 
