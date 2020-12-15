@@ -1,0 +1,40 @@
+---
+title: "20201215-W51-Ninja Warrior"
+author: "CPXOPZ"
+date: "2020/12/15"
+output:
+  html_document:
+    theme: paper
+    highlight: kate
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r prep, message=FALSE}
+library(tidyverse)
+
+```
+
+```{r data}
+ninja_warrior <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-12-15/ninja_warrior.csv')
+```
+
+```{r data-prep}
+
+
+
+```
+
+
+
+```{r plots, fig.width = 17, fig.height = 12}
+
+
+
+```
+
+***
+
+```{r session}
+sessionInfo()
+```
