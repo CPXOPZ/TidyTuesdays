@@ -10,6 +10,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.showtext = T, fig.retina = 1)
+```
+
 ```{r prep, message=FALSE}
 library(tidyverse)
 
@@ -24,8 +28,6 @@ ninja_warrior <- readr::read_csv('https://raw.githubusercontent.com/rfordatascie
 
 
 ```
-
-
 
 ```{r plots, fig.width = 17, fig.height = 12}
 
