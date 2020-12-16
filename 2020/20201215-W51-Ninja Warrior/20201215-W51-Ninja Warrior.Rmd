@@ -17,11 +17,14 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.showtext = T, fig.retina
 ```{r prep, message=FALSE}
 library(dplyr)
 library(stringr)
+library(ggplot2)
 ```
 
 ```{r data,echo=FALSE}
 ninja_warrior <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-12-15/ninja_warrior.csv')
 ```
+
+10seasons 28cities
 
 ```{r data-prep}
 skimr::skim(ninja_warrior)
@@ -32,13 +35,14 @@ races <- ninja_warrior %>%
   mutate(location = case_when(
     str_detect(location, "Sasuke") ~ "Sasuke",
     str_detect(location, "San Pedro") ~ "San Pedro",
-    TRUE ~ location
-  ))
-
+    TRUE ~ location),
+    index = row_number())
 
 ```
 
 ```{r plots, fig.width = 17, fig.height = 12}
+ggplot(races) +
+  geom_bar(aes(season, 1, group = index, fill = location), stat = 'identity', color = "black", size = 1) 
 
 
 
