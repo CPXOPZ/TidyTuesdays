@@ -19,6 +19,8 @@ library(dplyr)
 library(stringr)
 library(ggplot2)
 library(RColorBrewer)
+library(cowplot)
+library(patchwork)
 ```
 
 ```{r data, message=FALSE}
@@ -39,27 +41,51 @@ races <- ninja_warrior %>%
     TRUE ~ location),
     index = row_number())
 
+obstacle<- ninja_warrior %>% 
+  group_by(season, round_stage) %>% 
+  # count() %>% 
+  mutate(round_stage = factor(round_stage, levels = c("Qualifying (Regional/City)","Finals (Regional/City)","Qualifying","Semi-Finals","National Finals - Stage 1","National Finals - Stage 2","National Finals - Stage 3","National Finals - Stage 4"), ordered = T))
+
 ```
 
 ```{r plots}
 city_color <- colorRampPalette(brewer.pal(12,"Dark2"))(28)
 
-ggplot(races) +
+race_plot <- ggplot(races) +
   geom_bar(aes(season, 1, group = index, fill = location), stat = 'identity', color = "white", size = 1.5)+
   scale_x_continuous(breaks = seq(1,10), labels = seq(1,10))+
   scale_fill_manual(values = city_color,
                     guide = guide_legend(title = "Cities",
                                          title.position = "bottom",
                                          title.hjust = 0.5,
-                                         direction = "horizontal", ncol = 2))+
+                                         direction = "horizontal", nrow = 4))+
   labs(x = "Seasons",
        y = NULL,
        title = "Distribution of Ninja Warrior competitions")+
   theme_minimal()+
-  theme(legend.position = "right")
+  theme(legend.position = "bottom")
 
+round_plot <- ggplot(obstacle)+
+  geom_bar(aes(round_stage,1, fill = as.factor(season)), stat = 'identity')+
+  coord_flip()+
+  scale_x_discrete(limits = rev(levels(obstacle$round_stage)))+
+  scale_fill_manual(values = brewer.pal(10,"Spectral"),
+                    guide = guide_legend("Season",
+                                         nrow = 1))+
+  labs(x = NULL,
+       y = NULL,
+       title = "Round distribution")+
+  theme_minimal()+
+  theme(legend.position = "bottom")
 
+race_plot/round_plot
 
+ggsave(here::here("2020/20201215-W51-Ninja Warrior", "20201215_W51_Ninja_Warrior.png"),
+       width = 24,
+       height = 24,
+       units = "cm",
+       type = ragg::agg_png(),
+       dpi = "retina")
 ```
 
 ***
