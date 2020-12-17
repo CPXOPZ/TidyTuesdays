@@ -18,16 +18,17 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.showtext = T, fig.retina
 library(dplyr)
 library(stringr)
 library(ggplot2)
+library(RColorBrewer)
 ```
 
-```{r data,echo=FALSE}
+```{r data, message=FALSE}
 ninja_warrior <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-12-15/ninja_warrior.csv')
 ```
 
-10seasons 28cities
-
 ```{r data-prep}
 skimr::skim(ninja_warrior)
+
+# 10seasons 28cities
 
 races <- ninja_warrior %>% 
   select(season, location, round_stage) %>% 
@@ -40,9 +41,22 @@ races <- ninja_warrior %>%
 
 ```
 
-```{r plots, fig.width = 17, fig.height = 12}
+```{r plots}
+city_color <- colorRampPalette(brewer.pal(12,"Dark2"))(28)
+
 ggplot(races) +
-  geom_bar(aes(season, 1, group = index, fill = location), stat = 'identity', color = "black", size = 1) 
+  geom_bar(aes(season, 1, group = index, fill = location), stat = 'identity', color = "white", size = 1.5)+
+  scale_x_continuous(breaks = seq(1,10), labels = seq(1,10))+
+  scale_fill_manual(values = city_color,
+                    guide = guide_legend(title = "Cities",
+                                         title.position = "bottom",
+                                         title.hjust = 0.5,
+                                         direction = "horizontal", ncol = 2))+
+  labs(x = "Seasons",
+       y = NULL,
+       title = "Distribution of Ninja Warrior competitions")+
+  theme_minimal()+
+  theme(legend.position = "right")
 
 
 
