@@ -78,8 +78,8 @@ round_plot <- ggplot(obstacle)+
        caption = "@CPXOPZ")+
   theme_minimal()+
   theme(legend.position = "bottom",
-        legend.spacing.x = unit(0, "pt"),
-        legend.key.width = unit(90, "pt"))
+        legend.spacing.x = unit(10, "pt"),
+        legend.key.width = unit(25, "pt"))
 
 race_plot/round_plot+
   plot_annotation(title = "Ninja Warrior",
