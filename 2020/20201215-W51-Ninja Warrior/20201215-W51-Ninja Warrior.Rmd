@@ -74,11 +74,18 @@ round_plot <- ggplot(obstacle)+
                                          nrow = 1))+
   labs(x = NULL,
        y = NULL,
-       title = "Round distribution")+
+       title = "Round distribution",
+       caption = "@CPXOPZ")+
   theme_minimal()+
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom",
+        legend.spacing.x = unit(0, "pt"),
+        legend.key.width = unit(90, "pt"))
 
-race_plot/round_plot
+race_plot/round_plot+
+  plot_annotation(title = "Ninja Warrior",
+                  theme = theme(plot.title = element_text(face = "bold",
+                                                          hjust = 0.5,
+                                                          size = 23)))
 
 ggsave(here::here("2020/20201215-W51-Ninja Warrior", "20201215_W51_Ninja_Warrior.png"),
        width = 24,
