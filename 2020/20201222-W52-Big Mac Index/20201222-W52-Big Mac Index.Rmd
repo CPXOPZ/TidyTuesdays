@@ -1,0 +1,52 @@
+---
+title: "20201222-W52-Big Mac Index"
+author: "CPXOPZ"
+date: "2020/12/22"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+[Data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-12-22)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+```{r package, message=FALSE}
+library(dplyr)
+```
+
+```{r data, message=FALSE}
+bigmac <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-12-22/big-mac.csv')
+
+# tuesdata <- tidytuesdayR::tt_load('2020-12-22')
+# tuesdata <- tidytuesdayR::tt_load(2020, week = 52)
+# 
+# big-mac <- tuesdata$big-mac
+```
+
+具有日期变量date 2000-2007
+国家名name
+Big Mac prices are from McDonald’s 
+exchange rates
+GDP and population data used to calculate the euro area averages 
+GDP per person data
+
+```{r data pre}
+skimr::skim(bigmac)
+bigmac %>% 
+  count(name, sort = T)
+```
+
+
+
+
+
+
+
+***
+
+```{r session}
+sessionInfo()
+```
