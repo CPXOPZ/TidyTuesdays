@@ -15,6 +15,10 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ```{r package, message=FALSE}
 library(dplyr)
+library(ggplot2)
+library(ggtext)
+library(gganimate)
+library()
 ```
 
 ```{r data, message=FALSE}
@@ -23,7 +27,7 @@ bigmac <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 # tuesdata <- tidytuesdayR::tt_load('2020-12-22')
 # tuesdata <- tidytuesdayR::tt_load(2020, week = 52)
 # 
-# big-mac <- tuesdata$big-mac
+# bigmac <- tuesdata$`big-mac`
 ```
 
 具有日期变量date 2000-2007
@@ -37,13 +41,27 @@ GDP per person data
 skimr::skim(bigmac)
 bigmac %>% 
   count(name, sort = T)
+
+plot <- bigmac %>% 
+  filter(name == "China") %>% 
+  arrange(date) %>% 
+  ggplot()+
+  geom_line(aes(date, dollar_price))+
+  geom_line(aes(date, dollar_ex))+
+  scale_y_continuous(labels = scales::dollar_format())+
+  labs(x = NULL,
+       y = NULL,
+       title = "**Trend over time**<br>*Local currency units per dollar* (Above) and *Price of a Big Mac* in dollars (Under)",
+       caption = "*@CPXOPZ*")+
+  theme_minimal()+
+  theme(plot.title = element_markdown(),
+        plot.caption = element_markdown())+
+  transition_reveal(date)
+
+
+ani <- animate(plot, height = 10, width = 18, units = "cm", res = 150)
+anim_save("20201222-W52-Big_Mac_Index.gif", ani)
 ```
-
-
-
-
-
-
 
 ***
 
