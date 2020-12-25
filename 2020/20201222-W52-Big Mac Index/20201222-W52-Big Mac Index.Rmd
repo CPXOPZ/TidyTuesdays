@@ -18,7 +18,6 @@ library(dplyr)
 library(ggplot2)
 library(ggtext)
 library(gganimate)
-library()
 ```
 
 ```{r data, message=FALSE}
@@ -51,10 +50,12 @@ plot <- bigmac %>%
   scale_y_continuous(labels = scales::dollar_format())+
   labs(x = NULL,
        y = NULL,
-       title = "**Trend over time**<br>*Local currency units per dollar* (Above) and *Price of a Big Mac* in dollars (Under)",
+       title = "**Trend over time**",
+       subtitle = "*Local currency units per dollar* (Above) and *Price of a Big Mac* in dollars (Under)",
        caption = "*@CPXOPZ*")+
   theme_minimal()+
   theme(plot.title = element_markdown(),
+        plot.subtitle = element_markdown(),
         plot.caption = element_markdown())+
   transition_reveal(date)
 
