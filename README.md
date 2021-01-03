@@ -5,7 +5,7 @@
 [#TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday)
 
 <details>
-  <summary>Contributions in chronological order</summary>
+  <summary>Contributions in 2020</summary>
 
 <!-- toc -->
 * **2020**
