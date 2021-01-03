@@ -2,7 +2,7 @@
   &nbsp;TidyTuesday Contributions&nbsp;
 </h1>
 
-[#TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday)
+[TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday)
 
 <details>
   <summary>Contributions in 2020</summary>
