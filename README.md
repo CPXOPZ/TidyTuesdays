@@ -1,8 +1,11 @@
 <h1 style="font-weight:normal" align="center">
-  &nbsp;#TidyTuesday Contributions&nbsp;
+  &nbsp;TidyTuesday Contributions&nbsp;
 </h1>
 
 [#TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday)
+
+<details>
+  <summary>Contributions in chronological order</summary>
 
 <!-- toc -->
 * **2020**
@@ -15,3 +18,7 @@
   - 2020/51 [20201215-W51-Ninja Warrior](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2020/20201215-W51-Ninja%20Warrior)
   - 2020/52 [20201222-W52-Big Mac Index](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2020/20201222-W52-Big%20Mac%20Index)
 <!-- tocstop -->
+
+</details>
+
+***
