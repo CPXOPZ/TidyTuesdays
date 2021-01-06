@@ -13,6 +13,11 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
+```{r packages}
+library(dplyr)
+library(viridis)
+```
+
 ```{r data}
 tuesdata <- tidytuesdayR::tt_load('2021-01-05')
 tuesdata <- tidytuesdayR::tt_load(2021, week = 2)
@@ -23,9 +28,51 @@ transit_cost <- tuesdata$transit_cost
 ```
 
 ```{r datapre}
+skimr::skim(transit_cost)
 
+transit_cost %>% 
+  filter(country == 'CN') %>% 
+  skimr::skim()
+
+cities <- transit_cost %>% 
+  filter(country == 'CN') %>% 
+  count(city, sort = T) %>% 
+  filter(n >= 10) %>% 
+  pull(city)
 ```
 
+In China, the data included 28 cities
+
+```{r plot}
+transit_cost %>% 
+  filter(city %in% cities) %>% 
+  group_by(city) %>% 
+  summarise(totalcost = sum(cost), .groups = "drop") %>% 
+  arrange(desc(totalcost)) %>% 
+  ggplot(aes(x = forcats::fct_recode(as.factor(transit_cost$city,totalcost)), y = totalcost, fill = city))+
+  geom_bar(stat = "identity", show.legend = F)+
+  scale_fill_viridis(discrete = T)
+  
+  
+  
+# 环形图，不合适
+transit_cost %>% 
+  filter(city %in% cities) %>% 
+  group_by(city) %>% 
+  summarise(totalcost = sum(cost)) %>% 
+  mutate(percent = totalcost / sum(totalcost),
+         ymax = cumsum(percent),
+         ymin = lag(ymax, default = 0),
+         label_p = (ymax + ymin) / 2,
+         label = glue::glue("{city}-{percent}")) %>% 
+  ggplot( aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=city)) +
+  geom_rect() +
+  # geom_text( x=2, aes(y=label_p, label=label), size=6) + 
+  coord_polar(theta="y") +
+  xlim(c(-1, 4)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
 
 ***
 
