@@ -13,14 +13,14 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
-```{r packages}
+```{r packages, message=FALSE}
 library(dplyr)
 library(ggplot2)
 library(viridis)
 library(patchwork)
 ```
 
-```{r data}
+```{r data, message=FALSE, echo=FALSE}
 tuesdata <- tidytuesdayR::tt_load('2021-01-05')
 tuesdata <- tidytuesdayR::tt_load(2021, week = 2)
 
@@ -57,7 +57,7 @@ bar <- transit_cost %>%
   scale_fill_viridis(discrete = T)+
   scale_y_continuous(labels = scales::dollar_format(prefix = "\u00a5"))+
   labs(title = "Cost per city",
-       x = NULL,
+       x = "",
        y = "Total Cost(RMB)")+
   theme_bw()
 
