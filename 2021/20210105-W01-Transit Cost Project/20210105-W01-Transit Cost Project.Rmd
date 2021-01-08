@@ -15,7 +15,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 
 ```{r packages}
 library(dplyr)
+library(ggplot2)
 library(viridis)
+library(patchwork)
 ```
 
 ```{r data}
@@ -44,17 +46,55 @@ cities <- transit_cost %>%
 In China, the data included 28 cities
 
 ```{r plot}
-transit_cost %>% 
+bar <- transit_cost %>% 
   filter(city %in% cities) %>% 
+  mutate(real_cost = as.numeric(real_cost)) %>% 
   group_by(city) %>% 
-  summarise(totalcost = sum(cost), .groups = "drop") %>% 
+  summarise(totalcost = sum(real_cost), .groups = "drop") %>% 
   arrange(desc(totalcost)) %>% 
-  ggplot(aes(x = forcats::fct_recode(as.factor(transit_cost$city,totalcost)), y = totalcost, fill = city))+
+  ggplot(aes(x = city, y = totalcost, fill = city))+
   geom_bar(stat = "identity", show.legend = F)+
-  scale_fill_viridis(discrete = T)
-  
-  
-  
+  scale_fill_viridis(discrete = T)+
+  scale_y_continuous(labels = scales::dollar_format(prefix = "\u00a5"))+
+  labs(title = "Cost per city",
+       x = NULL,
+       y = "Total Cost(RMB)")+
+  theme_bw()
+
+dot <- transit_cost %>% 
+  filter(city %in% cities) %>% 
+  mutate(real_cost = as.numeric(real_cost)) %>% 
+  ggplot(aes(length, real_cost))+
+  geom_point(aes(color = city, size = cost_km_millions),alpha = 0.65)+
+  scale_color_viridis(discrete = T, guide = F)+
+  scale_y_continuous(labels = scales::dollar_format(prefix = "\u00a5"))+
+  labs(title = "Cost per project",
+       x = "Length(Km)",
+       y = "Real cost(RMB)",
+       size = "Cost/km in millions of USD",
+       caption = "@CPXOPZ\n#TidyTuesday")+
+  theme_bw()+
+  theme(legend.position = "bottom")
+
+bar / dot +
+  plot_annotation(title = "Transit Costs in China",
+                  theme = theme(plot.title = element_text(hjust = 0.5,
+                                                          face = "bold",
+                                                          size = 23)))
+
+ggsave(here::here("2021/20210105-W01-Transit Cost Project", "20210105-W01-Transit_Cost_Project.png"),
+       width = 22,
+       height = 25,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
+
+library(plotly)
+
+ggplotly(dot)
+
+
+
 # 环形图，不合适
 transit_cost %>% 
   filter(city %in% cities) %>% 

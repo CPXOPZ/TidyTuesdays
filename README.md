@@ -26,7 +26,7 @@
 
 <!-- toc -->
 * **2021**
-  - 2020/45 [20201103-W45-IKEA Furniture](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2020/20201103-W45-IKEA%20Furniture)
+  - 2021/01 [20210105-W01-Transit Cost Project](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210105-W01-Transit%20Cost%20Project)
 <!-- tocstop -->
 
 </details>
