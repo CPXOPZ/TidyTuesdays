@@ -27,6 +27,7 @@
 <!-- toc -->
 * **2021**
   - 2021/01 [20210105-W01-Transit Cost Project](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210105-W01-Transit%20Cost%20Project)
+  - 2021/02 [20210112-W02-Art Collections](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210112-W02-Art%20Collections)
 <!-- tocstop -->
 
 </details>
