@@ -65,6 +65,7 @@ densityplot <- artwork %>%
   filter(artist %in% top10) %>% 
   ggplot(aes(year, artist))+
   geom_density_ridges()+
+  annotate("text", x = 1800, y = 11, label = "")+
   labs(x = NULL,
        y = NULL,
        title = "Top 10 prolific artists")+
@@ -79,4 +80,4 @@ ggsave(here::here("2021/20210112-W02-Art Collections", "20210112-W02-Art_Collect
        dpi = "retina",
        type = ragg::agg_png())
 
-```
+  ```
