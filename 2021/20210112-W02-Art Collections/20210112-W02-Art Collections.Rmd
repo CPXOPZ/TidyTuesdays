@@ -11,9 +11,13 @@ editor_options:
 
 knitr::opts_chunk$set(echo = TRUE)
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(forcats)
+library(ggridges)
 library(tidytuesdayR)
-
+library(patchwork)
 ```
 
 
@@ -25,23 +29,54 @@ tt %>%
   map(glimpse)
 
 artwork <- tt$artwork
-artists <- tt$artists
+artists <- tt$artists %>% 
+  drop_na(yearOfBirth, yearOfDeath, gender) %>% 
+  mutate(age = yearOfDeath - yearOfBirth)
 
 ```
 
 
 ```{r datapre}
-
-artists %>% 
-  drop_na(yearOfBirth, yearOfDeath, gender) %>% 
-  group_by(gender) %>% 
-  mutate(age = yearOfDeath - yearOfBirth) %>% 
-  summarise(age_mean = mean(age))
+top10 <- artwork %>% 
+  count(artist, sort = T) %>% 
+  head(10) %>% 
+  pull(artist)
 
 ```
 
 ```{r Visualize}
+age_plot <- artists %>% 
+  arrange(-age) %>% 
+  head(10) %>% 
+  mutate(name = as.factor(name),
+         name = fct_reorder(name, age)) %>% 
+  ggplot()+
+  geom_point(aes(yearOfBirth, name), size = 7)+
+  geom_point(aes(yearOfDeath, name), size = 7)+
+  geom_segment(aes(x = yearOfBirth, xend = yearOfDeath, y = name, yend = name))+
+  geom_text(aes(x = yearOfDeath, y = name, label = age), color = "white", size = 3, fontface = "bold")+
+  geom_text(aes(x = yearOfBirth, y = name, label = substr(gender, 1,1)), color = "white", size = 4)+
+  labs(x = NULL,
+       y = NULL,
+       title = "Top 10 long-aged artists")+
+  theme_light()
 
+densityplot <- artwork %>% 
+  filter(artist %in% top10) %>% 
+  ggplot(aes(year, artist))+
+  geom_density_ridges()+
+  labs(x = NULL,
+       y = NULL,
+       title = "Top 10 prolific artists")+
+  theme_light()
 
-  
+age_plot / densityplot
+
+ggsave(here::here("2021/20210112-W02-Art Collections", "20210112-W02-Art_Collections.png"),
+       height = 18,
+       width = 15,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
+
 ```
