@@ -1,0 +1,24 @@
+---
+title: "20210119-W03-Kenya Census"
+author: "CPXOPZ"
+date: "2021/1/19"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-01-19
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r data}
+tt <- tidytuesdayR::tt_load('2021-01-19')
+
+gender <- tt$gender
+crops <- tt$crops
+crops <- tt$households
+
+```
+
