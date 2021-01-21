@@ -2,7 +2,9 @@
 title: "20210119-W03-Kenya Census"
 author: "CPXOPZ"
 date: "2021/1/19"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 editor_options: 
   chunk_output_type: console
 ---
@@ -11,6 +13,11 @@ https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-01-19
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(tidyr)
+library(forcats)
+library(ggplot2)
 ```
 
 ```{r data}
@@ -18,7 +25,55 @@ tt <- tidytuesdayR::tt_load('2021-01-19')
 
 gender <- tt$gender
 crops <- tt$crops
-crops <- tt$households
+households <- tt$households
+
+```
+
+```{r prepare}
+skimr::skim(households)
+# 具体省份是否可以用地图展示？
+
+
+
+```
+
+```{r plot}
+crops %>% 
+  rowwise() %>% 
+  mutate(total = sum(across(where(is.numeric)), na.rm = T)) %>% 
+  ungroup() %>% 
+  select(SubCounty, total) %>% 
+  mutate(SubCounty = as.factor(SubCounty),
+         SubCounty = fct_reorder(SubCounty, total)
+         #SubCounty = fct_lump(SubCounty, 8, w = total)
+         ) %>% 
+  ggplot(aes(x = SubCounty, y = total))+
+  geom_col()+
+  scale_y_log10(label = scales::comma_format())+
+  coord_flip()+
+  labs(y = "Total farming Households")
+
+crops %>% 
+  rowwise() %>% 
+  mutate(total = sum(across(where(is.numeric)), na.rm = T)) %>% 
+  ungroup() %>% 
+  select(SubCounty, total) %>% 
+  arrange(-total) %>% 
+  mutate(percent = total / sum(total),
+         ymax = cumsum(percent),
+         ymin = lag(ymax, default = 0),
+         labelp = (ymin + ymax) / 2) %>%
+  ggplot()+
+  geom_rect(aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=SubCounty), show.legend = F)+
+  coord_polar(theta="y")+
+  xlim(c(1, 4)) +
+  theme_void() 
+
+
+crops %>% 
+  pivot_longer()
+  rowwise(crops) %>% 
+  mutate(total =  sum(c_across(where(is.numeric))))
 
 ```
 
