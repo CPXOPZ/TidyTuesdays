@@ -71,7 +71,10 @@ sub_cir <- crops %>%
   annotate("text", x = 1, y = 0.5,label = "♥\nKENYA\n50%", size = 7)+
   coord_polar(theta="y")+
   xlim(c(1, 4)) +
-  theme_void()
+  theme_void()+
+  theme(plot.margin =unit(c(0,0,0,0), "cm"),
+        panel.spacing = unit(c(0, 0, 0, 0), "cm"))
+
 
 
 farm_dis <- crops %>% 
@@ -107,7 +110,9 @@ farm_cir <- crops %>%
   annotate("text", x = 1, y = 0.5,label = "Farming\n65.3%", size = 7)+
   coord_polar(theta="y")+
   xlim(c(1, 4)) +
-  theme_void()
+  theme_void()+
+  theme(plot.margin =unit(c(0,0,0,0), "cm"),
+        panel.spacing = unit(c(0, 0, 0, 0), "cm"))
 
 ```
 
@@ -115,11 +120,15 @@ farm_cir <- crops %>%
 (sub_dis | farm_dis) /
   (sub_cir| plot_spacer()|farm_cir)+
   plot_layout()+
-  plot_annotation(title = "")
+  plot_annotation(title = "	Kenya Census",
+                  caption = "@CPXOPZ",
+                  theme = theme(plot.title = element_text(size = 22,
+                                                          hjust = 0.5,
+                                                          face = "bold")))
 
 ggsave(here::here("2021/20210119-W03-Kenya Census", "20210119-W03-Kenya_Census.png"),
-       width = 15,
-       height = 15,
+       width = 26,
+       height = 26,
        units = "cm",
        dpi = "retina",
        type = ragg::agg_png())
