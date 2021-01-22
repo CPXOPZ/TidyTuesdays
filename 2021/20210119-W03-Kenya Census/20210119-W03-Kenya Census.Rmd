@@ -18,6 +18,7 @@ library(dplyr)
 library(tidyr)
 library(forcats)
 library(ggplot2)
+library(patchwork)
 ```
 
 ```{r data}
@@ -38,7 +39,7 @@ skimr::skim(households)
 ```
 
 ```{r plot}
-crops %>% 
+sub_dis <- crops %>% 
   rowwise() %>% 
   mutate(total = sum(across(where(is.numeric)), na.rm = T)) %>% 
   ungroup() %>% 
@@ -51,9 +52,10 @@ crops %>%
   geom_col()+
   scale_y_log10(label = scales::comma_format())+
   coord_flip()+
-  labs(y = "Total farming Households")
+  labs(y = "Total farming Households")+
+  theme_bw()
 
-crops %>% 
+sub_cir <- crops %>% 
   rowwise() %>% 
   mutate(total = sum(across(where(is.numeric)), na.rm = T)) %>% 
   ungroup() %>% 
@@ -65,15 +67,61 @@ crops %>%
          labelp = (ymin + ymax) / 2) %>%
   ggplot()+
   geom_rect(aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=SubCounty), show.legend = F)+
+  scale_fill_grey()+
+  annotate("text", x = 1, y = 0.5,label = "♥\nKENYA\n50%", size = 7)+
   coord_polar(theta="y")+
   xlim(c(1, 4)) +
-  theme_void() 
+  theme_void()
 
 
-crops %>% 
-  pivot_longer()
-  rowwise(crops) %>% 
-  mutate(total =  sum(c_across(where(is.numeric))))
+farm_dis <- crops %>% 
+  pivot_longer(Farming:`Khat (Miraa)`, names_to = "crop", values_to = "value") %>% 
+  group_by(crop) %>% 
+  summarise(total = sum(value, na.rm = T)) %>% 
+  ungroup() %>% 
+  mutate(crop = as.factor(crop),
+         crop = fct_reorder(crop, total)) %>% 
+  ggplot(aes(x = crop, y = total))+
+  geom_col()+
+  scale_y_continuous(label = scales::comma_format())+
+  coord_flip()+
+  labs(x = "Crop",
+       y = "Total farming Households")+
+  theme_bw()
 
+farm_cir <- crops %>% 
+  pivot_longer(Farming:`Khat (Miraa)`, names_to = "crop", values_to = "value") %>% 
+  group_by(crop) %>% 
+  summarise(total = sum(value, na.rm = T)) %>% 
+  ungroup() %>% 
+  mutate(crop = as.factor(crop),
+         crop = fct_reorder(crop, total)) %>% 
+  arrange(-total) %>% 
+  mutate(percent = total / sum(total),
+         ymax = cumsum(percent),
+         ymin = lag(ymax, default = 0),
+         labelp = (ymin + ymax) / 2) %>% 
+  ggplot()+
+  geom_rect(aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=crop), show.legend = F)+
+  scale_fill_grey(start = 1,end = 0.5,)+
+  annotate("text", x = 1, y = 0.5,label = "Farming\n65.3%", size = 7)+
+  coord_polar(theta="y")+
+  xlim(c(1, 4)) +
+  theme_void()
+
+```
+
+```{r grid}
+(sub_dis | farm_dis) /
+  (sub_cir| plot_spacer()|farm_cir)+
+  plot_layout()+
+  plot_annotation(title = "")
+
+ggsave(here::here("2021/20210119-W03-Kenya Census", "20210119-W03-Kenya_Census.png"),
+       width = 15,
+       height = 15,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
 ```
 
