@@ -1,0 +1,34 @@
+---
+title: "20210126-W04-Plastic Pollution"
+author: "CPXOPZ"
+date: "2021/1/27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-01-26
+
+```{r data}
+tuesdata <- tidytuesdayR::tt_load('2021-01-26')
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
+
+plastics <- tuesdata$plastics
+
+library(dplyr)
+library()
+
+```
+
+```{r pre}
+skimr::skim(plastics)
+
+china <- plastics %>% 
+  filter(country %in% "China") %>% 
+  filter(!parent_company %in% "Grand Total")
+
+
+```
+
