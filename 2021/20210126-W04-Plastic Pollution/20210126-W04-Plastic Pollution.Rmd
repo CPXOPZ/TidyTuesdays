@@ -18,7 +18,7 @@ tuesdata <- tidytuesdayR::tt_load('2021-01-26')
 plastics <- tuesdata$plastics
 
 library(dplyr)
-library()
+library(ggplot2)
 
 ```
 
@@ -30,5 +30,49 @@ china <- plastics %>%
   filter(!parent_company %in% "Grand Total")
 
 
+```
+
+```{r}
+plastics %>% 
+  filter(country %in% "China") %>% 
+  filter(parent_company %in% "Grand Total")
+
+china_total <- data.frame(category = c("Other", "Polyester\nplastic"),
+                          num = c(2276, 1183))
+
+china_total %>% 
+  mutate(percent = num / sum(num),
+         ymax = cumsum(percent),
+         ymin = lag(ymax, default = 0),
+         labelp = (ymin + ymax) / 2,
+         label = paste0(category, "\n", round(percent, 3)*100, "%")) %>% 
+  ggplot(aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category))+
+  geom_rect() +
+  geom_label(x=3.5, aes(y=labelp, label=label), size=5) +
+  scale_fill_brewer(palette=4) +
+  coord_polar(theta="y") +
+  xlim(c(2, 4)) +
+  theme_void() +
+  labs(title = "Plastic Pollution in China",
+       caption = "@CPXOPZ")+
+  theme(legend.position = "none")+
+  theme(plot.margin =unit(c(0,0,0,0), "cm"),
+        panel.spacing = unit(c(0, 0, 0, 0), "cm"),
+        plot.title = element_text(hjust = 0.5,
+                                  face = "bold",
+                                  size = 15))
+ggsave(here::here("2021/20210126-W04-Plastic Pollution", "20210126-W04-Plastic_Pollution.png"),
+       width = 10,
+       height = 10,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
+
+
+china %>% 
+  group_by(parent_company) %>% 
+  summarise(other_t = sum(o),
+            pet_t = sum(pet)) %>% 
+  arrange(-pet_t,  -other_t)
 ```
 
