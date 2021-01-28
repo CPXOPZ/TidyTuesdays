@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-01-26
+<https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-01-26>
 
 ```{r data}
 tuesdata <- tidytuesdayR::tt_load('2021-01-26')
@@ -19,7 +19,7 @@ plastics <- tuesdata$plastics
 
 library(dplyr)
 library(ggplot2)
-
+library(gt)
 ```
 
 ```{r pre}
@@ -32,7 +32,7 @@ china <- plastics %>%
 
 ```
 
-```{r}
+```{r plot}
 plastics %>% 
   filter(country %in% "China") %>% 
   filter(parent_company %in% "Grand Total")
@@ -67,12 +67,22 @@ ggsave(here::here("2021/20210126-W04-Plastic Pollution", "20210126-W04-Plastic_P
        units = "cm",
        dpi = "retina",
        type = ragg::agg_png())
+```
 
-
+```{r table}
 china %>% 
   group_by(parent_company) %>% 
   summarise(other_t = sum(o),
             pet_t = sum(pet)) %>% 
-  arrange(-pet_t,  -other_t)
+  arrange(-pet_t,  -other_t) %>%
+  slice_head(n = 10) %>% 
+  gt(rowname_col = "parent_company")%>%
+  tab_header(title = md("**Top 10** company cause plastic pollution in *China* ")) %>%
+  tab_stubhead(label = "Parent Company") %>% 
+  cols_label(
+    other_t = md("Other category count"),
+    pet_t = md("Polyester plastic count"))%>%
+  gtsave("20210126-W04-Plastic_Pollution2.png",path = here::here("2021/20210126-W04-Plastic Pollution"))
+
 ```
 
