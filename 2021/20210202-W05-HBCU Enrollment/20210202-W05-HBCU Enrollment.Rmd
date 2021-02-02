@@ -1,0 +1,56 @@
+---
+title: "20210202-W05-HBCU Enrollment"
+author: "CPXOPZ"
+date: "2021/2/2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+```
+
+```{r data}
+# tuesdata <- tidytuesdayR::tt_load('2021-02-02')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 6)
+
+hbcu_all <- tuesdata$hbcu_all
+```
+
+```{r pre}
+hbcu_all %>% 
+  select(Year, `Total enrollment`, Males, Females) %>% 
+  pivot_longer(cols = c(ends_with("ales"), `Total enrollment`),
+               names_to = "category",
+               values_to = "num")
+
+hbcu_all %>% 
+  select(Year, `Total enrollment`, ends_with("year")) %>% 
+  pivot_longer(cols = !Year,
+               names_to = "category",
+               values_to = "num")
+
+hbcu_all %>% 
+  select(Year, `Total enrollment`, starts_with("Total")) %>% 
+  pivot_longer(cols = starts_with("Total"))
+
+hbcu_all %>% 
+  select(Year, contains("Pub")) %>% 
+  pivot_longer(cols = contains("Pub"),
+               names_to = "category",
+               values_to = "num")
+
+hbcu_all %>% 
+  select(Year, contains("Priva")) %>% 
+  pivot_longer(cols = contains("Priva"),
+               names_to = "category",
+               values_to = "num")
+```
+
+```{r plot}
+
+```
+
