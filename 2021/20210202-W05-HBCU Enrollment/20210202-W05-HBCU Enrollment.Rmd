@@ -21,7 +21,7 @@ hbcu_all <- tuesdata$hbcu_all
 ```
 
 ```{r pre}
-hbcu_all %>% 
+gender <- hbcu_all %>% 
   select(Year, `Total enrollment`, Males, Females) %>% 
   pivot_longer(cols = c(ends_with("ales"), `Total enrollment`),
                names_to = "category",
@@ -33,9 +33,11 @@ hbcu_all %>%
                names_to = "category",
                values_to = "num")
 
-hbcu_all %>% 
+pub_pri <- hbcu_all %>% 
   select(Year, `Total enrollment`, starts_with("Total")) %>% 
-  pivot_longer(cols = starts_with("Total"))
+  pivot_longer(cols = starts_with("Total"),
+               names_to = "category",
+               values_to = "num")
 
 hbcu_all %>% 
   select(Year, contains("Pub")) %>% 
@@ -51,6 +53,78 @@ hbcu_all %>%
 ```
 
 ```{r plot}
+gender_plot <- gender %>% 
+  ggplot(aes(Year, num, group = category, color = category))+
+  geom_line(size = 1)+
+  geom_point(size = 1.5)+
+  scale_color_brewer(palette = "Set1")+
+  scale_y_continuous(labels = scales::comma_format())+
+  labs(title = "Gender Distribution",
+       x = NULL,
+       y = NULL,
+       color = "Category")+
+  theme_bw()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 1.5,
+                                  size = 14))
+gender_anno <- 
+  ggplot()+
+  geom_blank()+
+  annotate("text", x = 1, y = 1,
+           label = "College enrollment
+has gradually increased over the years,
+however it has decreased after 2010.
+At all times, 
+there were more female than male enrollees,
+with the gap gradually increasing and 
+leveling off regionally in recent years.")+
+  theme_void()
 
+pub_pri_plot <- pub_pri %>% 
+  ggplot(aes(Year, num, group = category, color = category))+
+  geom_line(size = 1)+
+  geom_point(size = 1.5)+
+  scale_color_brewer(palette = "Set2")+
+  scale_y_continuous(labels = scales::comma_format())+
+  labs(title = "Public school / Private college Distribution",
+       x = NULL,
+       y = NULL,
+       color = "Category")+
+  theme_bw()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = -37,
+                                  size = 14),
+        legend.margin = )
+
+pub_pri_anno <- 
+  ggplot()+
+  geom_blank()+
+  annotate("text", x = 1, y = 1,
+           label = "Over all time, 
+public school enrollment has been larger than 
+private college enrollment,
+private college enrollment has not changed much, 
+while public school enrollment has 
+gradually increased over the years,
+although it has decreased after 2010.")+
+  theme_void()
+
+
+```
+
+```{r final}
+(gender_plot | gender_anno) /
+(pub_pri_plot | pub_pri_anno)+
+  plot_annotation(title = "College Enrollment",
+                  caption = "@CPXOPZ",
+                  theme = theme(plot.title = element_text(size = 20,
+                                                          face = "bold")))
+
+ggsave(here::here("2021/20210202-W05-HBCU Enrollment", "20210202-W05-HBCU_Enrollment.png"),
+       width = 20,
+       height = 20,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
 ```
 
