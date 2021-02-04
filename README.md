@@ -30,6 +30,7 @@
   - 2021/02 [20210112-W02-Art Collections](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210112-W02-Art%20Collections)
   - 2021/03 [20210119-W03-Kenya Census](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210119-W03-Kenya%20Census)
   - 2021/04 [20210126-W04-Plastic Pollution](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210126-W04-Plastic%20Pollution)
+  - 2021/05 [20210202-W05-HBCU Enrollment](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210202-W05-HBCU%20Enrollment)
 <!-- tocstop -->
 
 </details>
