@@ -1,0 +1,24 @@
+---
+title: "20210209-W06-Wealth and Income"
+author: "CPXOPZ"
+date: "2021/2/9"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+
+```
+
+```{r data}
+# tuesdata <- tidytuesdayR::tt_load('2021-02-09')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 7)
+
+lifetime_earn <- tuesdata$lifetime_earn
+```
+
+```{r pre}
+
+```
+
