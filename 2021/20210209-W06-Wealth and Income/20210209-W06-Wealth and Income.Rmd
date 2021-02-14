@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
-
+library(ggplot2)
 ```
 
 ```{r data}
@@ -16,9 +16,23 @@ library(dplyr)
 tuesdata <- tidytuesdayR::tt_load(2021, week = 7)
 
 lifetime_earn <- tuesdata$lifetime_earn
+income_mean <- tuesdata$income_mean
 ```
 
 ```{r pre}
+income_mean %>% 
+  count(race)
+```
+
+```{r plot}
+
+
+ggsave(here::here("2021/20210209-W06-Wealth and Income", "20210209-W06-Wealth_and_Income.png"),
+       width = 20,
+       height = 20,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
 
 ```
 
