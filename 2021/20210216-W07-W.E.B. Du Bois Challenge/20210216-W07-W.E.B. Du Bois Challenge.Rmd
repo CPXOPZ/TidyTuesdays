@@ -1,0 +1,24 @@
+---
+title: "20210216-W07-W.E.B. Du Bois Challenge"
+author: "CPXOPZ"
+date: "2021/2/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+```{r data}
+
+tuesdata <- tidytuesdayR::tt_load('2021-02-16')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 8)
+
+georgia_pop <- tuesdata$georgia_pop
+```
+
+```{r}
+
+```
+
