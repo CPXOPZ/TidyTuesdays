@@ -26,11 +26,11 @@
 
 <!-- toc -->
 * **2021**
-  - 2021/01 [20210105-W01-Transit Cost Project](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210105-W01-Transit%20Cost%20Project)
-  - 2021/02 [20210112-W02-Art Collections](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210112-W02-Art%20Collections)
-  - 2021/03 [20210119-W03-Kenya Census](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210119-W03-Kenya%20Census)
-  - 2021/04 [20210126-W04-Plastic Pollution](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210126-W04-Plastic%20Pollution)
-  - 2021/05 [20210202-W05-HBCU Enrollment](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210202-W05-HBCU%20Enrollment)
+  - 2021/02 [20210105-W02-Transit Cost Project](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210105-W02-Transit%20Cost%20Project)
+  - 2021/03 [20210112-W03-Art Collections](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210112-W03-Art%20Collections)
+  - 2021/04 [20210119-W04-Kenya Census](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210119-W04-Kenya%20Census)
+  - 2021/05 [20210126-W05-Plastic Pollution](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210126-W05-Plastic%20Pollution)
+  - 2021/06 [20210202-W06-HBCU Enrollment](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210202-W06-HBCU%20Enrollment)
 <!-- tocstop -->
 
 </details>
