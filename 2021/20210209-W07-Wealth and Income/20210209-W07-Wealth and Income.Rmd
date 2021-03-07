@@ -9,27 +9,64 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
+library(patchwork)
 ```
 
 ```{r data}
 # tuesdata <- tidytuesdayR::tt_load('2021-02-09')
 tuesdata <- tidytuesdayR::tt_load(2021, week = 7)
 
-lifetime_earn <- tuesdata$lifetime_earn
+# lifetime_earn <- tuesdata$lifetime_earn
 income_mean <- tuesdata$income_mean
+student_debt <- tuesdata$student_debt
+home_owner <- tuesdata$home_owner
+
 ```
 
 ```{r pre}
 income_mean %>% 
   count(race)
+
+
 ```
 
 ```{r plot}
 
+theme_set(theme_minimal())
 
-ggsave(here::here("2021/20210209-W06-Wealth and Income", "20210209-W06-Wealth_and_Income.png"),
-       width = 20,
-       height = 20,
+student <- student_debt %>% 
+  ggplot(aes(year, loan_debt_pct, group = race, color = race))+
+  geom_line(size = 2, alpha = 0.7)+
+  scale_x_continuous(breaks = seq(1989, 2016, 3))+
+  scale_y_continuous(labels = scales::percent_format())+
+  scale_color_brewer(palette = "Set1")+
+  labs(x = NULL,
+       y = NULL,
+       color = "Race",
+       title = "Student loan debt",
+       subtitle = "Average family student loan debt, by race and year") 
+
+
+home <- home_owner %>% 
+  ggplot(aes(year, home_owner_pct, group = race, color = race))+
+  geom_line(size = 2, alpha = 0.7)+
+  scale_x_continuous(breaks = c(seq(1976, 2016, 6), 2016))+
+  scale_y_continuous(labels = scales::percent_format())+
+  scale_color_brewer(palette = "Set1")+
+  labs(x = NULL,
+       y = NULL,
+       color = "Race",
+       title = "Home ownership percentage",
+       subtitle = "Home ownership percentag by race and year")
+  
+student / home+
+  plot_layout(guides = 'collect')&
+  theme(panel.grid.minor = element_blank())
+
+
+ggsave(here::here("2021/20210209-W07-Wealth and Income", "20210209-W07-Wealth_and_Income.png"),
+       width = 15,
+       height = 21,
        units = "cm",
        dpi = "retina",
        type = ragg::agg_png())
