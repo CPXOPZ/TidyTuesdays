@@ -7,6 +7,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
 ```
 
 ```{r dat}
@@ -24,8 +26,25 @@ movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 
 ```
 
-```{r pre}
+```{r}
+# # geom_bar
+# movies %>% 
+#   count(year, clean_test) %>% 
+#   ggplot()+
+#   geom_bar(aes(year, n, fill = clean_test), stat = "identity")
 
+movies %>% 
+  count(year, clean_test) %>% 
+  ggplot()+
+  geom_col(aes(year, n, fill = clean_test), position = "fill")+
+  scale_y_continuous(labels = scales::percent_format(), name = NULL)+
+  labs(title = "",
+       subtitle = "",
+       x = NULL,
+       caption = "@CPXOPZ")+
+  theme_minimal()
+
+#factor color
 ```
 
  
