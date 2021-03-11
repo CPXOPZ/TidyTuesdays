@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(ggplot2)
+library(colorspace)
 ```
 
 ```{r dat}
@@ -35,16 +36,33 @@ movies <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 
 movies %>% 
   count(year, clean_test) %>% 
+  mutate(clean_test = factor(clean_test, levels = c("men","nowomen","notalk", "dubious", "ok"),
+                             labels = c("Men", "Nowomen","Notalk","Dubious", "Ok"),
+                             ordered = T)) %>%
   ggplot()+
   geom_col(aes(year, n, fill = clean_test), position = "fill")+
+  scale_x_continuous(breaks = c(seq(1970, 2013, 5), 2013))+
   scale_y_continuous(labels = scales::percent_format(), name = NULL)+
-  labs(title = "",
-       subtitle = "",
+  scale_fill_discrete_diverging(palette = "Blue-Red",
+                                name = "Test results",
+                                # labels = c()
+                                )+
+  labs(title = "Bechdel Test Over Time",
+       # subtitle = "",
        x = NULL,
        caption = "@CPXOPZ")+
-  theme_minimal()
+  theme_minimal()+
+  theme(legend.position = "bottom",
+        plot.title = element_text(size = 23,
+                                  face = "bold",
+                                  hjust = 0.5))
 
-#factor color
+ggsave(here::here("2021/20210309-W11-Bechdel Test", "20210309-W11-Bechdel_Test.png"),
+       height = 15,
+       width = 20,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
 ```
 
  
