@@ -31,6 +31,11 @@
   - 2021/04 [20210119-W04-Kenya Census](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210119-W04-Kenya%20Census)
   - 2021/05 [20210126-W05-Plastic Pollution](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210126-W05-Plastic%20Pollution)
   - 2021/06 [20210202-W06-HBCU Enrollment](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210202-W06-HBCU%20Enrollment)
+  - 2021/07 [20210209-W07-Wealth and Income](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210209-W07-Wealth%20and%20Income)
+  - 2021/08 [20210216-W08-W.E.B. Du Bois Challenge](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210216-W08-W.E.B.%20Du%20Bois%20Challenge)
+  - 2021/09 [20210223-W09-Employment and Earnings](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210223-W09-Employment%20and%20Earnings)
+  - 2021/10 [20210302-W10-SuperBowl Ads](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210302-W10-SuperBowl%20Ads)
+  - 2021/11 [20210309-W11-Bechdel Test](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210309-W11-Bechdel%20Test)
 <!-- tocstop -->
 
 </details>
