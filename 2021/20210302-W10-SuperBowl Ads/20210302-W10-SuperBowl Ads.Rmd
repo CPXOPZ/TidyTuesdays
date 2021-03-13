@@ -7,24 +7,67 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 ```
 
-## R Markdown
+```{r data}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Either ISO-8601 date or year/week works!
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+tuesdata <- tidytuesdayR::tt_load('2021-03-02')
+tuesdata <- tidytuesdayR::tt_load(2021, week = 10)
 
-```{r cars}
-summary(cars)
+youtube <- tuesdata$youtube
+
+# Or read in the data manually
+
+youtube <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-02/youtube.csv')
 ```
 
-## Including Plots
+```{r}
+plot_data <- youtube %>% 
+  add_count(year, name = "year_total") %>% 
+  pivot_longer(cols = funny:use_sex, names_to = "attribute") %>% 
+  filter(value) %>% 
+  add_count(value, year, attribute) %>% 
+  distinct(year, attribute, n, year_total) %>% 
+  mutate(pct = n / year_total)
 
-You can also embed plots, for example:
+pal2 <- rev(colorspace::sequential_hcl(10, palette = "Mint"))
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+ggplot(plot_data) +
+  geom_tile(aes(x = year, y = 0, group = attribute, fill = pct)) +
+  geom_text(aes(x = 2020.8, y = 0, label = attribute), stat = "unique", color = "grey45", hjust = 0, vjust = 0.4) +
+  scale_fill_gradientn(colors = pal2, labels = scales::percent) +
+  facet_wrap(vars(attribute), ncol = 1) +
+  coord_cartesian() +
+  xlim(1997, 2023) +
+  labs(
+    title = "Superbowl commercials Ads Variation over Time",
+    caption = "@CPXOPZ"
+  ) +
+  theme_void() +
+  theme(
+    plot.background = element_rect(fill = "grey97"),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(color = "grey45"),
+    legend.margin = margin(10, 0, 0, 0),
+    axis.text.x = element_text(color = "grey45"),
+    strip.text = element_blank(),
+    plot.title = element_text(hjust = 0.5, margin = margin(0, 0, 13, 0), size = 17),
+    plot.caption = element_text(color = "grey35"),
+    plot.margin = margin(30, 0, 10, 0)
+  )
+
+ggsave(here::here("2021/20210302-W10-SuperBowl Ads","20210302-W10-SuperBowl_Ads.png"),
+       width = 33,
+       height = 15,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
