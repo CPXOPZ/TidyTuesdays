@@ -1,5 +1,5 @@
 ---
-title: "20210223-W08-Employment and Earnings"
+title: "20210223-W09-Employment and Earnings"
 author: "CPXOPZ"
 date: "2021/2/23"
 output: html_document
@@ -7,16 +7,52 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
 ```
+
+https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-02-23
 
 ```{r data}
 tuesdata <- tidytuesdayR::tt_load('2021-02-23')
 tuesdata <- tidytuesdayR::tt_load(2021, week = 9)
 
 employed <- tuesdata$employed
+earn <- tuesdata$earn
 ```
 
 ```{r}
+skimr::skim(earn)
 
+earn %>% 
+  filter(age == "16 years and over",
+         race == "All Races",
+         ethnic_origin == "All Origins") %>% 
+  mutate(date = paste0(year, stringr::str_sub(paste0("0", quarter*3), -2, -1)),
+         date = lubridate::parse_date_time(date, "%Y%m")) %>% 
+  ggplot()+
+  geom_area(aes(x = date, y = median_weekly_earn, group = sex, fill = sex))+
+  colorspace::scale_fill_discrete_qualitative("Dark 2")+
+  scale_y_continuous(labels = scales::dollar_format())+
+  labs(title = "Weekly Earnings by Gender over Time",
+       # subtitle = "",
+       caption = "@CPXOPZ", 
+       fill = "Gender:",
+       x = NULL,
+       y = "Weekly earn (Media)")+
+  theme_minimal()+
+  theme(legend.position = "bottom",
+        panel.grid.minor.y = element_blank(),
+        plot.title = element_text(hjust = 0.5,
+                                  size = 17,
+                                  margin = margin(18,0,18,0)))
+
+ggsave(here::here("2021/20210223-W09-Employment and Earnings", "20210223-W09-Employment_and_Earnings.png"),
+       height = 16,
+       width = 15,
+       units = "cm",
+       dpi = "retina",
+       type = ragg::agg_png())
+  
 ```
 
