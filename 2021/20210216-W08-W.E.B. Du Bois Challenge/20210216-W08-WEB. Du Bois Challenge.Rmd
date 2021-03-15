@@ -1,5 +1,5 @@
 ---
-title: "20210216-W07-W.E.B. Du Bois Challenge"
+title: "20210216-W08-W.E.B. Du Bois Challenge"
 author: "CPXOPZ"
 date: "2021/2/17"
 output: html_document
@@ -8,6 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
+library(tidyr)
+library(ggplot2)
 ```
 
 ```{r data}
@@ -19,6 +21,39 @@ georgia_pop <- tuesdata$georgia_pop
 ```
 
 ```{r}
+georgia_pop %>% 
+  pivot_longer(!Year, names_to = "type") %>% 
+  ggplot(aes(Year, value,group = type, linetype = type))+
+  geom_line()+
+  coord_flip()+
+  scale_linetype_manual(values = c("solid", "longdash"), labels = c("COLORED", "WHITE"))+
+  scale_y_reverse(breaks = seq(0, 100, 5), expand = c(0, 0))+
+  scale_x_continuous(breaks = seq(1790, 1890, 10), limits = c(1790,1890), expand = c(0, 0))+
+  labs(title = "COMPARATIVE INCREASE OF WHITE AND COLORED\nPOPULATION OF GEORGIA.",
+       y = "PERCENTS",
+       x = NULL, 
+       linetype = NULL)+
+  theme_light()+
+  theme(plot.background = element_rect(fill = "#EBD3B9"),
+        panel.background = element_rect(fill = "#EBD3B9"),
+        legend.background = element_rect(fill = "#EBD3B9"),
+        legend.key = element_rect(fill = "#EBD3B9"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(color = "#db8572",
+                                        size = rel(0.4)),
+        axis.text.y = element_text(size = 12),
+        legend.position = "bottom",
+        legend.key.width = unit(1.6, "cm"),
+        plot.title = element_text(hjust = 0.5, margin = margin(10,1,25,1), size = 21),
+        plot.margin = margin(10,50,10,50))
+
+ggsave(here::here("2021/20210216-W08-W.E.B. Du Bois Challenge", "20210216-W08-W.E.B._Du_Bois_Challenge.png"),
+       width = 22,
+       height = 30,
+       units = "cm",
+       dpi = 100,
+       type = ragg::agg_png())
+
 
 ```
 
