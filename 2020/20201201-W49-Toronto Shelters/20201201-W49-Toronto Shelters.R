@@ -96,4 +96,4 @@ ggsave(here::here("2020/20201201-W49-Toronto Shelters","20201201-W49-Toronto_She
        height = 30,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")

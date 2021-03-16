@@ -91,7 +91,7 @@ ggsave(here::here("2020/20201215-W51-Ninja Warrior", "20201215_W51_Ninja_Warrior
        width = 24,
        height = 24,
        units = "cm",
-       type = ragg::agg_png(),
+       type = "cairo",
        dpi = "retina")
 ```
 

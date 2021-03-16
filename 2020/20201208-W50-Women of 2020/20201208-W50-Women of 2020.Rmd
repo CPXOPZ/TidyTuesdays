@@ -87,6 +87,6 @@ ggsave(here::here("2020/20201208-W50-Women of 2020", "20201208-W50-Women_of_2020
        height = 15,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
 ```
 

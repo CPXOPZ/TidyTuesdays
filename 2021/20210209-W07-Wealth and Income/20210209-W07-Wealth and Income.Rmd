@@ -69,7 +69,7 @@ ggsave(here::here("2021/20210209-W07-Wealth and Income", "20210209-W07-Wealth_an
        height = 21,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
 
 ```
 

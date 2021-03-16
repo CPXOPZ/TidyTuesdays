@@ -78,6 +78,6 @@ ggsave(here::here("2021/20210112-W02-Art Collections", "20210112-W02-Art_Collect
        width = 15,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
 
   ```

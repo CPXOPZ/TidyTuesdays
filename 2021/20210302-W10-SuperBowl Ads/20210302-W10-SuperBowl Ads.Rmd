@@ -67,7 +67,7 @@ ggsave(here::here("2021/20210302-W10-SuperBowl Ads","20210302-W10-SuperBowl_Ads.
        height = 15,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
 
 ```
 

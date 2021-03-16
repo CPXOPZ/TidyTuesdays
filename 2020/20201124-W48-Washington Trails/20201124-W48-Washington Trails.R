@@ -90,4 +90,4 @@ ggsave(here::here("2020/20201124-W48-Washington Trails","20201124-W48-Washington
        height = 15,
        units = "cm",
        dpi = 300,
-       type = ragg::agg_png())
+       type = "cairo")

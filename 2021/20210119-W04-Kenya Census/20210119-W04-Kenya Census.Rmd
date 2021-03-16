@@ -131,6 +131,6 @@ ggsave(here::here("2021/20210119-W03-Kenya Census", "20210119-W03-Kenya_Census.p
        height = 26,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
 ```
 

@@ -52,7 +52,7 @@ ggsave(here::here("2021/20210216-W08-W.E.B. Du Bois Challenge", "20210216-W08-W.
        height = 30,
        units = "cm",
        dpi = 100,
-       type = ragg::agg_png())
+       type = "cairo")
 
 
 ```

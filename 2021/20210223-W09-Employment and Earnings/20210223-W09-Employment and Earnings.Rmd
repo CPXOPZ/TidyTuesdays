@@ -52,7 +52,7 @@ ggsave(here::here("2021/20210223-W09-Employment and Earnings", "20210223-W09-Emp
        width = 15,
        units = "cm",
        dpi = "retina",
-       type = ragg::agg_png())
+       type = "cairo")
   
 ```
 
