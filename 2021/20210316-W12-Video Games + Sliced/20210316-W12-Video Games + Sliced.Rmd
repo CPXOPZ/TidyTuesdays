@@ -1,0 +1,75 @@
+---
+title: "20210316-W12-Video Games + Sliced"
+author: "CPXOPZ"
+date: "2021/3/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r pacakages}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+```
+
+
+```{r data}
+# tuesdata <- tidytuesdayR::tt_load('2021-03-16')
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 12)
+# 
+# games <- tuesdata$games
+
+# Or read in the data manually
+
+games <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-16/games.csv')
+
+```
+
+```{r datapre}
+games %>% 
+  glimpse()
+
+games %>% 
+  skimr::skim()
+
+plotdata <- games %>% 
+  filter(gamename %in% c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")) %>% 
+  mutate(date = ymd(paste(year, month, 1)),
+         month = factor(month, levels = month.name, labels = substr(month.name, 1,3)),
+         gamename = factor(gamename, levels = c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")))
+
+```
+
+```{r plot}
+plotdata %>% 
+  ggplot()+
+  geom_tile(aes(year, month, fill = avg ),size = 0.08, color = "white")+
+  facet_wrap(~gamename, ncol = 1)+
+  # scale_fill_brewer("Greys")+
+  labs(title = "",
+       x = NULL, 
+       y = NULL,
+       fill = "")+
+  theme_light()+
+  theme(legend.position = "bottom",
+        legend.key.width = unit(2, "lines"),
+        legend.key.height = unit(0.5, "lines"),
+        strip.text = element_blank())
+
+```
+
+```{r finalplot}
+
+# ragg::agg_png(here::here("render", paste0("bechdel_test_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".png")), res = 320, width = 10, height = 8, units = "in")
+
+# ggsave("my_plot.png",
+#        plot = my_plot,
+#        device = agg_png(width = 6, height = 8, units = "in", res = 300))
+
+ggsave(here::here("2021/20210316-W12-Video Games + Sliced", "20210316-W12-Video_Games_+_Sliced.png"),
+       device = ragg::agg_png, res = 300, units = "in")
+```
+
