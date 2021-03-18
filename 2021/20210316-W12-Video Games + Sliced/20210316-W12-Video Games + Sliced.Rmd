@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
+library(colorspace)
 ```
 
 
@@ -44,20 +45,42 @@ plotdata <- games %>%
 ```
 
 ```{r plot}
-plotdata %>% 
+annot <- data.frame(
+  label = c("PUBG", "C S", "DOTA2"),
+  gamename = factor(c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2"), levels = c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")))
+
+title <- data.frame(year = 2014, month = "Oct", gamename = "PLAYERUNKNOWN'S BATTLEGROUNDS") %>% 
+  mutate(gamename = factor(gamename, levels = c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")))
+
+subtitle <- data.frame(year = 2014, month = "May", gamename = "PLAYERUNKNOWN'S BATTLEGROUNDS") %>% 
+  mutate(gamename = factor(gamename, levels = c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")))
+
+subtitle_text <- "--Average number of players at the same time.--\nPUBG exploded in the early days (over 1 million),\nbut then returned to normal.\nCS and Dota 2 have endured and are still vibrant today."
+
+final_plot <- plotdata %>% 
   ggplot()+
   geom_tile(aes(year, month, fill = avg ),size = 0.08, color = "white")+
   facet_wrap(~gamename, ncol = 1)+
-  # scale_fill_brewer("Greys")+
-  labs(title = "",
+  scale_fill_continuous_sequential("BrwnYl")+
+  scale_x_continuous(breaks = seq(2012, 2021), expand = c(0.01, 0.01))+
+  labs(title = NULL,
+       caption = "@CPXOPZ",
        x = NULL, 
        y = NULL,
        fill = "")+
-  theme_light()+
+  theme_minimal()+
   theme(legend.position = "bottom",
-        legend.key.width = unit(2, "lines"),
+        legend.key.width = unit(3, "lines"),
         legend.key.height = unit(0.5, "lines"),
-        strip.text = element_blank())
+        strip.text = element_blank(),
+        panel.grid = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_text(face = "bold", size = 16, color = "grey70"))+
+  geom_text(data = annot, aes(x = 2021, y = "Aug", label = label),
+            angle = -90, size = 15.4)+
+  geom_text(data = title, aes(x = year, y = month), label = "Steam Games",
+            size = 20, fontface = "bold")+
+  geom_text(data = subtitle, aes(x = year, y = month), label = subtitle_text, size = 6)
 
 ```
 
@@ -65,11 +88,9 @@ plotdata %>%
 
 # ragg::agg_png(here::here("render", paste0("bechdel_test_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".png")), res = 320, width = 10, height = 8, units = "in")
 
-# ggsave("my_plot.png",
-#        plot = my_plot,
-#        device = agg_png(width = 6, height = 8, units = "in", res = 300))
-
-ggsave(here::here("2021/20210316-W12-Video Games + Sliced", "20210316-W12-Video_Games_+_Sliced.png"),
-       device = ragg::agg_png, res = 300, units = "in")
+ggsave(here::here("2021/20210316-W12-Video Games + Sliced", "20210316-W12-Video_Games_+_Sliced.png"), 
+       final_plot,
+       device = ragg::agg_png(width = 12, height = 10, units = "in", res =150)
+       )
 ```
 
