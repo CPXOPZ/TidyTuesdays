@@ -36,6 +36,7 @@
   - 2021/09 [20210223-W09-Employment and Earnings](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210223-W09-Employment%20and%20Earnings)
   - 2021/10 [20210302-W10-SuperBowl Ads](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210302-W10-SuperBowl%20Ads)
   - 2021/11 [20210309-W11-Bechdel Test](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210309-W11-Bechdel%20Test)
+  - 2021/12 [20210316-W12-Video Games + Sliced](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210316-W12-Video%20Games%20%2B%20Sliced)
 <!-- tocstop -->
 
 </details>
