@@ -46,7 +46,7 @@ plotdata <- games %>%
 
 ```{r plot}
 annot <- data.frame(
-  label = c("PUBG", "C S", "DOTA2"),
+  label = c("PUBG", "CS:GO", "DOTA2"),
   gamename = factor(c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2"), levels = c("PLAYERUNKNOWN'S BATTLEGROUNDS", "Counter-Strike: Global Offensive", "Dota 2")))
 
 title <- data.frame(year = 2014, month = "Oct", gamename = "PLAYERUNKNOWN'S BATTLEGROUNDS") %>% 
