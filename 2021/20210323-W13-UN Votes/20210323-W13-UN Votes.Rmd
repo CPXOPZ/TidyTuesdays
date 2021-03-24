@@ -25,10 +25,14 @@ unvotes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 roll_calls <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-23/roll_calls.csv')
 issues <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-23/issues.csv')
 
-# save.image(here::here("20210323-W13-UN Votes", "20210323-W13-UN_Votes.Rdata"))
+# save.image(here::here("2021/20210323-W13-UN Votes", "20210323-W13-UN_Votes.RData"))
 ```
 
 ```{r data prepare}
+
+```
+
+```{r plot}
 
 ```
 

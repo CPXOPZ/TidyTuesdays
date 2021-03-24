@@ -5,7 +5,7 @@
 [TidyTuesday challenge](https://github.com/rfordatascience/tidytuesday)
 
 <details>
-  <summary>Contributions in 2020</summary>
+  <summary>Contributions in 2020 (click to expand)</summary>
 
 <!-- toc -->
 * **2020**
@@ -22,7 +22,7 @@
 </details>
 
 <details>
-  <summary>Contributions in 2021</summary>
+  <summary>Contributions in 2021 (click to expand)</summary>
 
 <!-- toc -->
 * **2021**
