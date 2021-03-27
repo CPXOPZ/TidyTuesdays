@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(dplyr)
 library(ggplot2)
-remotes::install_github("davidsjoberg/ggstream")
+# remotes::install_github("davidsjoberg/ggstream")
 library(ggstream)
 library()
 library(patchwork)
@@ -48,22 +48,51 @@ china_votes <- china %>%
 ```
 
 ```{r plot}
-china %>% 
+
+streamplot <- china %>% 
   mutate(year = lubridate::year(date)) %>% 
   count(year, vote) %>% 
   ggplot(aes(year, n, fill = vote))+
-  geom_stream(show.legend = F)
+  geom_stream(show.legend = F)+
+  geom_stream_label(aes(label = vote), size = 5, fontface = "bold")+
+  scale_fill_brewer(palette ="Set1")+
+  labs(title = "Vote results over time",
+       x = NULL,
+       y = NULL)+
+  theme_minimal()+
+  theme(panel.grid = element_blank(),
+        axis.text.y = element_blank())
 
+un <- here::here("2021/20210323-W13-UN Votes", "UN.png")
+guoqi <- here::here("2021/20210323-W13-UN Votes", "GUOQI1024.png")
+un.logo <- png::readPNG(un, native = TRUE)
+guoqi.logo <- png::readPNG(guoqi, native = TRUE)
+streamplot <- 
+streamplot + inset_element(un.logo, 0.65, 0.85, 0.8, 1)+
+  inset_element(guoqi.logo, 0.45, 0.85, 0.6, 1)
 
-
-UN_image <- "https://camo.githubusercontent.com/654fb54c78403255bbe1457b6a75423f5e370ee075eab4db0a189b886b68b8d7/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f7468756d622f652f65652f554e5f656d626c656d5f626c75652e7376672f3132303570782d554e5f656d626c656d5f626c75652e706e67"
-
-china_votes %>% 
+dis_plot <- china_votes %>% 
   # filter(vote == "")
   ggplot(aes(forcats::fct_rev(vote), n, fill = issue))+
   geom_col(position = "fill")+
   coord_flip()+
+  scale_y_continuous(labels = scales::percent_format(), expand = c(0,0.04))+
+  scale_fill_brewer(palette = "Dark2")+
+  labs(title = "Issues Distuibution",
+       x = NULL,
+       y = NULL,
+       fill = NULL)+
+  theme_minimal()+
   theme(legend.position = "bottom")
   
+streamplot / dis_plot+
+  plot_layout(heights = c(1,0.3))+
+  plot_annotation(title = "UN Votes of China",
+                  caption = "@CPXOPZ",
+                  theme = theme(plot.title = element_text(size = 25,face = "bold", hjust = 0.5, margin = margin(15,5,10,5))))
+
+ggsave(here::here("2021/20210323-W13-UN Votes", "20210323-W13-UN_Votes.png"),
+       device = ragg::agg_png(width = 8, height = 8, units = "in", res = 200))
+
 ```
 
