@@ -83,6 +83,10 @@ dis_plot <- china_votes %>%
        y = NULL,
        fill = NULL)+
   theme_minimal()+
+  guides(fill = guide_legend(reverse = TRUE,
+                             label.position = "top",
+                             byrow = TRUE,
+                             keyheight = 0.4))+
   theme(legend.position = "bottom")
   
 streamplot / dis_plot+
