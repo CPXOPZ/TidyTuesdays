@@ -1,0 +1,42 @@
+---
+title: "20210330-W14-Makeup Shades"
+author: "CPXOPZ"
+date: "2021/3/30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-03-30
+
+```{r package}
+library(dplyr)
+library(ggplot2)
+
+```
+
+```{r data}
+# tuesdata <- tidytuesdayR::tt_load('2021-03-30')
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 14)
+# 
+# sephora <- tuesdata$sephora
+
+# Or read in the data manually
+
+sephora <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/sephora.csv')
+ulta <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/ulta.csv')
+allCategories <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/allCategories.csv')
+allShades <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/allShades.csv')
+allNumbers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/allNumbers.csv')
+```
+
+```{r pre}
+allShades %>% 
+  ggplot(aes(hue, sat))+
+  geom_point()
+  
+```
+
