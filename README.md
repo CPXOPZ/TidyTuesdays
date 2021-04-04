@@ -38,6 +38,7 @@
   - 2021/11 [20210309-W11-Bechdel Test](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210309-W11-Bechdel%20Test)
   - 2021/12 [20210316-W12-Video Games + Sliced](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210316-W12-Video%20Games%20%2B%20Sliced)
   - 2021/13 [20210323-W13-UN Votes](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210323-W13-UN%20Votes)
+  - 2021/14 [20210330-W14-Makeup Shades](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210330-W14-Makeup%20Shades)
 <!-- tocstop -->
 
 </details>
