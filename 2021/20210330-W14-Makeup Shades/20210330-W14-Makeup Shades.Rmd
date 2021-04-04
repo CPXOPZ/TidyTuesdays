@@ -15,7 +15,7 @@ https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-03-30
 ```{r package}
 library(dplyr)
 library(ggplot2)
-
+library(ggtern)
 ```
 
 ```{r data}
@@ -34,9 +34,41 @@ allNumbers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
 ```
 
 ```{r pre}
-allShades %>% 
-  ggplot(aes(hue, sat))+
-  geom_point()
+skimr::skim(allShades)
+
+
   
+```
+
+```{r}
+
+library(extrafont)
+loadfonts(device = "win")
+
+allShades %>% 
+  ggplot(aes(hue, sat,lightness))+
+  geom_point()
+
+
+p <- ggtern(allShades, aes(x = hue, y = sat, z = lightness)) +
+  geom_point(aes(color = brand), show.legend = F)+
+  scale_color_discrete()+
+  labs(title = "Makeup Shades",
+       x = "HUE",
+       y = "SAT",
+       z = "LIGHT")+
+  theme_light(base_family = "serif")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+ragg::agg_png(here::here("2021/20210330-W14-Makeup Shades", "20210330-W14-Makeup_Shades.png"),
+              width = 5,
+              height = 4,
+              units = "in",res = 200)
+
+p
+
+dev.off()
 ```
 
