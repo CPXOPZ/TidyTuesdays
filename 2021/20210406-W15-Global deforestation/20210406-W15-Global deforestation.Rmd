@@ -12,7 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06
 
 ```{r package}
-
+library(dplyr)
+library(ggplot2)
+library(gghighlight)
 ```
 
 ```{r data}
@@ -29,5 +31,42 @@ brazil_loss <- readr::read_csv('https://raw.githubusercontent.com/rfordatascienc
 soybean_use <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-06/soybean_use.csv')
 vegetable_oil <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-06/vegetable_oil.csv')
 
+```
+
+```{r datapre}
+forest_area %>% 
+  distinct(entity)
+
+forest %>% 
+  distinct(entity)
+soybean_use %>% 
+  distinct(entity)
+
+vegetable_oil %>% 
+  distinct(entity)
+```
+
+```{r shiny plot}
+forest %>% 
+  ggplot(aes(year, net_forest_conversion, group = entity, color = entity))+
+  geom_line(size = 2,show.legend = F)+
+  gghighlight(entity == "China",
+              unhighlighted_params = list(size = 0.5))+
+  scale_y_continuous(labels = scales::comma_format())+
+  labs(title = "Change every 5 years for forest area in conversion",
+       x = "Year",
+       y = "Net forest conversion in hectares")+
+  theme_light()
+
+forest_area %>% 
+  ggplot(aes(year, forest_area, group = entity, color = entity))+
+  geom_line(size = 2,show.legend = F)+
+  gghighlight(entity == "China",
+              unhighlighted_params = list(size = 0.5))+
+  labs(title = "Forest area as a percent of global forest area",
+       x = "Year",
+       y = "Percent of global forest area")+
+  theme_light()
+  
 ```
 
