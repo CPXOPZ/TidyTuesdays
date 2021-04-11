@@ -15,6 +15,7 @@ https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-04-06
 library(dplyr)
 library(ggplot2)
 library(gghighlight)
+library(patchwork)
 ```
 
 ```{r data}
@@ -47,7 +48,7 @@ vegetable_oil %>%
 ```
 
 ```{r shiny plot}
-forest %>% 
+forPLot <- forest %>% 
   ggplot(aes(year, net_forest_conversion, group = entity, color = entity))+
   geom_line(size = 2,show.legend = F)+
   gghighlight(entity == "China",
@@ -58,7 +59,7 @@ forest %>%
        y = "Net forest conversion in hectares")+
   theme_light()
 
-forest_area %>% 
+areaPlot <- forest_area %>% 
   ggplot(aes(year, forest_area, group = entity, color = entity))+
   geom_line(size = 2,show.legend = F)+
   gghighlight(entity == "China",
@@ -68,5 +69,23 @@ forest_area %>%
        y = "Percent of global forest area")+
   theme_light()
   
+```
+
+```{r}
+forPLot / areaPlot+
+  plot_annotation(title = "Deforestation in China",
+                  caption = "@CPXOPZ",
+                  theme = theme(plot.title = element_text(size = 23, hjust = 0.5,
+                                                          face = "bold",
+                                                          margin = margin(10,5,10,5),
+                                                          family = "Times")))
+
+ggsave(here::here("2021/20210406-W15-Global deforestation","20210406-W15-Global_deforestation.png"),
+       width = 6,
+       height = 7,
+       units = "in",
+       dpi = 320,
+       type = "cairo")
+
 ```
 
