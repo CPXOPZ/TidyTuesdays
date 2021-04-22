@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r packages}
 library(dplyr)
+library(ggplot2)
 ```
 
 ```{r data}
@@ -25,16 +26,37 @@ netflix_titles <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 
 ```
 
-```{r}
+```{r dat pre}
+netflix_titles %>% 
+  skimr::skim()
+
+china <- netflix_titles %>% 
+  filter(country %in% "China")
+  
 
 ```
 
 ```{r}
 
+netflix_titles %>% 
+  filter(release_year>1990, release_year<2021) %>% 
+  count(release_year, type) %>% 
+  mutate(n = ifelse(type=="Movie",-n,n)) %>% 
+  ggplot(aes(release_year, n, fill = type))+
+  geom_col()
+
+
+china %>% 
+  count(release_year, type) %>%
+  mutate(n = ifelse(type=="Movie",-n,n)) %>% 
+  ggplot(aes(release_year, n, fill = type))+
+  geom_col()
 ```
 
 20210420-W17-Netflix Titles
 ```{r final}
- 
+
+
+ggsave(here::here("2021/20210420-W17-Netflix Titles", "20210420-W17-Netflix_Titles.png"))
 ```
 
