@@ -12,6 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages}
 library(dplyr)
 library(ggplot2)
+# library(cowplot)
+library(patchwork)
+library(showtext)
 ```
 
 ```{r data}
@@ -31,32 +34,64 @@ netflix_titles %>%
   skimr::skim()
 
 china <- netflix_titles %>% 
-  filter(country %in% "China")
+  filter(country %in% "China") %>% 
+  count(release_year, type) %>%
+  mutate(n = ifelse(type=="Movie",-n,n)) 
   
 
 ```
 
 ```{r}
 
-netflix_titles %>% 
-  filter(release_year>1990, release_year<2021) %>% 
+# add font
+font_add_google("Roboto")
+showtext_auto()
+
+ploa_data <- netflix_titles %>% 
+  filter(release_year>2000, release_year<2021) %>% 
   count(release_year, type) %>% 
-  mutate(n = ifelse(type=="Movie",-n,n)) %>% 
+  mutate(n = ifelse(type=="Movie",-n,n))
+
+whole_plot <- ploa_data %>% 
   ggplot(aes(release_year, n, fill = type))+
-  geom_col()
+  geom_col()+
+  geom_text(data = filter(ploa_data, n >0),aes(x = release_year, y = n, label = release_year), hjust = 0)+
+  scale_fill_brewer(palette = "Set1")+
+  coord_flip()+
+  labs(caption = "@CPXOPZ",
+       fill = NULL)+
+  theme_void()+
+  annotate("text", x = 2009,y =300, label= "Netflix Shows\nWorldwild",
+           size = 14)+
+  theme(legend.position = c(0.82, 0.2))
 
 
-china %>% 
-  count(release_year, type) %>%
-  mutate(n = ifelse(type=="Movie",-n,n)) %>% 
+china_plot <- china %>% 
   ggplot(aes(release_year, n, fill = type))+
-  geom_col()
+  geom_col(show.legend = F)+
+  geom_text(data = filter(china, n >0),aes(x = release_year, y = n, label = release_year), hjust = 0)+
+  scale_fill_brewer(palette = "Set1")+
+  coord_flip()+
+  labs(title = "Netflix Shows in China")+
+  theme_void()+
+  theme(plot.title = element_text(hjust = 0.5, size = 19))
+
 ```
 
 20210420-W17-Netflix Titles
 ```{r final}
+whole_plot+
+  inset_element(china_plot, left = 0, bottom = 0.1, right = 0.5, top = 0.5)&
+  theme(text = element_text(family = "Roboto"))
 
+showtext_opts(dpi = 300)
 
-ggsave(here::here("2021/20210420-W17-Netflix Titles", "20210420-W17-Netflix_Titles.png"))
+ggsave(here::here("2021/20210420-W17-Netflix Titles", "20210420-W17-Netflix_Titles.png"),
+       width = 15,
+       height = 7,
+       units = "in",
+       dpi = 300,
+       type = "cairo")
 ```
+
 
