@@ -1,0 +1,40 @@
+---
+title: "20210427-W18-CEO Departures"
+author: "CPXOPZ"
+date: "2021/4/27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+
+```
+
+```{r data import}
+# tuesdata <- tidytuesdayR::tt_load('2021-04-27')
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 18)
+
+# departures.csv <- tuesdata$departures.csv
+
+# Or read in the data manually
+
+departures <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-27/departures.csv')
+```
+
+```{r data pre}
+
+```
+
+```{r plot}
+
+```
+
+20210427-W18-CEO Departures
+
+```{r final plot}
+
+```
+
