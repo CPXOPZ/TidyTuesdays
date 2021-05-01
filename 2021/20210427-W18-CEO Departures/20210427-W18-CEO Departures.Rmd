@@ -10,7 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r packages}
-
+library(dplyr)
+library(ggplot2)
+library(ggtext)
 ```
 
 ```{r data import}
@@ -21,20 +23,58 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Or read in the data manually
 
-departures <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-27/departures.csv')
+departures <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-04-27/departures.csv') %>% 
+  filter(departure_code %in% c(1, 2, 3, 4, 5, 6))
 ```
 
 ```{r data pre}
 
+ill_dea <- departures %>% 
+  filter(departure_code %in% c(1,2)) %>% 
+  count(fyear, departure_code) %>% 
+  mutate(departer = ifelse(departure_code ==1, "Death", "Illness"))
+  count(departure_code %in% c(1,2))
+
 ```
 
 ```{r plot}
+departures %>% 
+  count(fyear) %>% 
+  filter(fyear>2015, fyear<2020)
 
+RColorBrewer::brewer.pal(2,name = "Set1")
+
+ill_dea %>% 
+  filter(fyear>1991, fyear<2020) %>% 
+  ggplot()+
+  geom_col(mapping =aes(x = fyear,y = n),
+           data = departures %>% count(fyear) %>% filter(fyear>1991, fyear<2020),
+           fill = "grey85")+
+  geom_col(aes(fyear, n, fill=departer), show.legend = F)+
+  scale_fill_brewer(palette = "Set1")+
+  scale_x_continuous(breaks = seq(1992, 2019, 3))+
+  coord_cartesian(ylim = c(0, 500))+
+  labs(title = "CEO Departures for <span style='color:#E41A1C;'>**Death**</span></span> and <span style='color:#377EB8;'>**Illness**</span></span>",
+       x = NULL,
+       y = "# of departures / year",
+       caption = "@CPXOPZ")+
+  theme_minimal()+
+  theme(plot.title = element_markdown(size = 18, margin = margin(18, 0, 13, 5)),
+        panel.grid.minor = element_blank())+
+  annotate("text", 2017, 500, label = "963", angle = -90, color = "grey50", hjust = 0.5)+
+  annotate("text", 2018, 500, label = "826", angle = -90, color = "grey50", hjust = 0.5)
+  
 ```
 
 20210427-W18-CEO Departures
 
 ```{r final plot}
-
+ggsave(here::here("2021/20210427-W18-CEO Departures", "20210427-W18-CEO_Departures.png"),
+       type = "cairo",
+       width = 10,
+       height = 5,
+       units = "in",
+       dpi = 320
+       )
 ```
 

@@ -42,6 +42,7 @@
   - 2021/15 [20210406-W15-Global deforestation](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210406-W15-Global%20deforestation)
   - 2021/16 [20210413-W16-US Post Offices](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210413-W16-US%20Post%20Offices)
   - 2021/17 [20210420-W17-Netflix Titles](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210420-W17-Netflix%20Titles)
+  - 2021/18 [20210427-W18-CEO Departures](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210427-W18-CEO%20Departures)
 <!-- tocstop -->
 
 </details>
