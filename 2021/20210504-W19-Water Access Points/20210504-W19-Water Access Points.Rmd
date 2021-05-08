@@ -10,18 +10,70 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r packages}
+library(dplyr)
+library(ggplot2)
 
 ```
 
 ```{r data import}
+# tuesdata <- tidytuesdayR::tt_load('2021-05-04')
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 19)
+# 
+# water <- tuesdata$water
+# 
+# # Or read in the data manually
+
+water <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-04/water.csv')
 
 ```
 
 ```{r data prepare}
+plot_data <- water %>% 
+  filter(!is.na(install_year), !is.na(country_name)) %>% 
+  mutate(report_date = lubridate::mdy(report_date),
+         decade = install_year %/% 10 *10) %>% 
+  filter(decade >= 1960, decade <= 2020) %>% 
+  count(country_name, decade) %>% 
+  filter(country_name %in% top10)
 
+
+
+top10 <- water %>% 
+  filter(!is.na(install_year), !is.na(country_name)) %>% 
+  mutate(report_date = lubridate::mdy(report_date),
+         decade = install_year %/% 10 *10) %>% 
+  filter(decade >= 1960, decade <= 2020) %>% 
+  count(country_name, sort =T) %>% 
+  slice(1:10) %>% 
+  pull(country_name)
+  
+last_data <- plot_data %>% 
+  filter(decade == 2020)
+  
 ```
 
 ```{r plot}
+plot_data %>% 
+  ggplot(aes(decade, n, color = country_name))+
+  geom_line(size=1.1, show.legend = F)+
+  scale_color_brewer(palette = "Set3")+
+  scale_x_continuous(expand = c(0.001, 0.001))+
+  scale_y_log10(label = scales::comma_format(),
+                expand = c(0.001, 0.001),
+                sec.axis = dup_axis(
+                  breaks = last_data$n,
+                  labels = last_data$country_name,
+                  name = NULL
+    ))+
+  labs(title = "Water Sources",
+       subtitle = "Top 10 water sources installations by decade.\nAround 2000, the most water resources were added.",
+       x = NULL,
+       y = "# of water sources added per decade",
+       caption = "#TidyTuesday | @CPXOPZ")+
+  theme_minimal()+
+  theme(plot.background = element_rect(fill = "#f9f4ec", color = "#f9f4ec"),
+        plot.title = element_text(hjust = 0.5, size = 18,face = "bold", margin = margin(13,5,7,5)),
+        plot.caption.position = "plot")
 
 ```
 
@@ -29,6 +81,12 @@ knitr::opts_chunk$set(echo = TRUE)
 https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-05-04
 
 ```{r final plot}
+ggsave(here::here("2021/20210504-W19-Water Access Points","20210504-W19-Water_Access_Points.png"),
+       height = 20,
+       width = 20,
+       units = "cm",
+       dpi = 250,
+       type = "cairo")
 
 ```
 
