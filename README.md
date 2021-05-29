@@ -46,6 +46,7 @@
   - 2021/19 [20210504-W19-Water Access Points](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210504-W19-Water%20Access%20Points)
   - 2021/20 [20210511-W20-US Broadband](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210511-W20-US%20Broadband)
   - 2021/21 [20210518-W21-Ask a Manager Salary Survey](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210518-W21-Ask%20a%20Manager%20Salary%20Survey)
+  - 2021/22 [20210525-W22-Mario Kart World Records](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210525-W22-Mario%20Kart%20World%20Records)
 <!-- tocstop -->
 
 </details>
