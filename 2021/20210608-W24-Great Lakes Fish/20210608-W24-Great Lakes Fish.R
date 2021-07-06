@@ -1,6 +1,6 @@
 
 # packages ----------------------------------------------------------------
-
+library(dplyr)
 
 # data import -------------------------------------------------------------
 # tuesdata <- tidytuesdayR::tt_load('2021-06-08')
@@ -14,7 +14,8 @@ fishing <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 stocked <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-06-08/stocked.csv')
 
 # data pre ----------------------------------------------------------------
-
+skimr::skim(fishing)
+skimr::skim(stocked)
 
 # plot --------------------------------------------------------------------
 
