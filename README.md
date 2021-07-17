@@ -49,6 +49,11 @@
   - 2021/22 [20210525-W22-Mario Kart World Records](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210525-W22-Mario%20Kart%20World%20Records)
   - 2021/23 [20210601-W23-Survivor TV Show](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210601-W23-Survivor%20TV%20Show)
   - 2021/24 [20210608-W24-Great Lakes Fish](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210608-W24-Great%20Lakes%20Fish)
+  - 2021/25 [20210615-W25-WEB Du Bois and Juneteenth](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210615-W25-WEB%20Du%20Bois%20and%20Juneteenth)
+  - 2021/26 [20210622-W26-Public Park Access](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210622-W26-Public%20Park%20Access)
+  - 2021/27 [20210629-W27-Animal Rescues](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210629-W27-Animal%20Rescues)
+  - 2021/28 [20210706-W28-Internationa Independence Days](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210706-W28-Internationa%20Independence%20Days)
+  - 2021/29 [20210713-W29-Scooby Doo](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210713-W29-Scooby%20Doo)
 <!-- tocstop -->
 
 </details>
