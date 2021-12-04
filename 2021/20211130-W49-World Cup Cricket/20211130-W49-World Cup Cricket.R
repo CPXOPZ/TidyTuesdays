@@ -17,3 +17,6 @@ matches <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 
 
 write.csv(matches, here::here("2021/20211130-W49-World Cup Cricket","matches.csv"),row.names = F,na = "")
+
+
+# haven::write_sas(matches,here::here("2021/20211130-W49-World Cup Cricket","matches.sas7bdat"))
