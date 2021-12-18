@@ -47,6 +47,10 @@ proc freq data=lyrics order=freq;
 	table lyrics_album_name*lyrics_section_artist/ out=freq;
 run;
 
+/* -------------------------------------------------------------------
+   plot
+   ------------------------------------------------------------------- */
+
 ods _all_ close;
 
 ods listing dpi=300;
