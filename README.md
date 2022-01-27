@@ -54,6 +54,37 @@
   - 2021/27 [20210629-W27-Animal Rescues](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210629-W27-Animal%20Rescues)
   - 2021/28 [20210706-W28-Internationa Independence Days](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210706-W28-Internationa%20Independence%20Days)
   - 2021/29 [20210713-W29-Scooby Doo](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210713-W29-Scooby%20Doo)
+  - 2021/30 [20210720-W30-US Droughts](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210720-W30-US%20Droughts)
+  - 2021/31 [20210727-W31-Olympic Medals](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210727-W31-Olympic%20Medals)
+  - 2021/32 [20210803-W32-Paralympic Medals](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210803-W32-Paralympic%20Medals)
+  - 2021/33 [20210810-W33-BEA Infrastructure Investment](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210810-W33-BEA%20Infrastructure%20Investment)
+  - 2021/34 [20210817-W34-Star Trek Voice Commands](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210817-W34-Star%20Trek%20Voice%20Commands)
+  - 2021/35 [20210824-W35-Lemurs](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210824-W35-Lemurs)
+  - 2021/36 [20210831-W36-Bird Baths](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210831-W36-Bird%20Baths)
+  - 2021/37 [20210907-W37-Formula 1 Races](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210907-W37-Formula%201%20Races)
+  - 2021/38 [20210914-W38-Billboard Top 100](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210914-W38-Billboard%20Top%20100)
+  - 2021/39 [20210921-W39-Emmy Awards](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210921-W39-Emmy%20Awards)
+  - 2021/40 [20210928-W40-NBER Papers](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20210928-W40-NBER%20Papers)
+  - 2021/41 [20211005-W41-Registered Nurses](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211005-W41-Registered%20Nurses)
+  - 2021/42 [20211012-W42-Global Seafood](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211012-W42-Global%20Seafood)
+  - 2021/43 [20211019-W43-Big Pumpkins](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211019-W43-Big%20Pumpkins)
+  - 2021/44 [20211026-W44-Ultra Trail Running](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211026-W44-Ultra%20Trail%20Running)
+  - 2021/48 [20211123-W48-DrWho](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211123-W48-DrWho)
+  - 2021/49 [20211130-W49-World Cup Cricket](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211130-W49-World%20Cup%20Cricket)
+  - 2021/50 [20211207-W50-Spiders](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211207-W50-Spiders)
+  - 2021/51 [20211214-W51-Spice Girls](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211214-W51-Spice%20Girls)
+  - 2021/52 [20211221-W52-Starbucks drinks](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2021/20211221-W52-Starbucks%20drinks)
+<!-- tocstop -->
+
+</details>
+
+<details>
+  <summary>Contributions in 2022 (click to expand)</summary>
+
+<!-- toc -->
+* **2022**
+  - 2022/02 [20220111-W02-Bee Colony losses](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220111-W02-Bee%20Colony%20losses)
+  - 2022/03 [20220118-W03-Chocolate Bar ratings](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220118-W03-Chocolate%20Bar%20ratings)
 <!-- tocstop -->
 
 </details>
@@ -64,8 +95,12 @@
 
 ![](yearly/2020/2020.png)  
 
----
+### Year -- 2021 (R——>SAS)
 
-### Year -- 2021 (Updating)
+#### R:
 
-![](yearly/2021/2021.png)  
+![](yearly/2021/2021_R.png)  
+
+#### SAS:
+
+![](yearly/2021/2021_SAS.png)  

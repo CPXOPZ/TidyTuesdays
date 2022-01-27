@@ -1,0 +1,32 @@
+---
+title: "20220125-W04-Board games"
+author: "CPXOPZ"
+date: "2022/1/25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r in}
+tuesdata <- tidytuesdayR::tt_load('2022-01-25')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 4)
+
+ratings <- tuesdata$ratings
+
+# Or read in the data manually
+
+ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-25/ratings.csv')
+details <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-25/details.csv')
+```
+
+```{r out}
+folder_name <- "20220125-W04-Board games"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
+
