@@ -1,0 +1,28 @@
+---
+title: "20220208-W06-Tuskegee Airmen"
+author: "CPXOPZ"
+date: "2022/2/8"
+output: html_document
+---
+
+```{r in}
+
+tuesdata <- tidytuesdayR::tt_load('2022-02-08')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 6)
+
+airmen <- tuesdata$airmen
+
+# Or read in the data manually
+
+airmen <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-08/airmen.csv')
+
+```
+
+```{r out}
+folder_name <- "20220208-W06-Tuskegee Airmen"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
