@@ -85,6 +85,11 @@
 * **2022**
   - 2022/02 [20220111-W02-Bee Colony losses](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220111-W02-Bee%20Colony%20losses)
   - 2022/03 [20220118-W03-Chocolate Bar ratings](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220118-W03-Chocolate%20Bar%20ratings)
+  - 2022/04 [20220125-W04-Board games](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220125-W04-Board%20games)
+  - 2022/05 [20220201-W05-Dog breeds](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220201-W05-Dog%20breeds)
+  - 2022/06 [20220208-W06-Tuskegee Airmen](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220208-W06-Tuskegee%20Airmen)
+  - 2022/07 [20220215-W07-DuBoisChallenge2022](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220215-W07-DuBoisChallenge2022)
+  - 2022/08 [20220222-W08-World Freedom index](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220222-W08-World%20Freedom%20index)
 <!-- tocstop -->
 
 </details>
