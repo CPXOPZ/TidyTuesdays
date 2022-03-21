@@ -1,0 +1,29 @@
+---
+title: "20220308-W10-Erasmus student mobility"
+author: "CPXOPZ"
+date: "2022/2/24"
+output: html_document
+---
+
+```{r in}
+
+tuesdata <- tidytuesdayR::tt_load('2022-03-08')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 10)
+
+erasmus <- tuesdata$erasmus
+
+# Or read in the data manually
+
+erasmus <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-08/erasmus.csv')
+
+
+```
+
+```{r out}
+folder_name <- "20220308-W10-Erasmus student mobility"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
