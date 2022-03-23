@@ -90,6 +90,8 @@
   - 2022/06 [20220208-W06-Tuskegee Airmen](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220208-W06-Tuskegee%20Airmen)
   - 2022/07 [20220215-W07-DuBoisChallenge2022](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220215-W07-DuBoisChallenge2022)
   - 2022/08 [20220222-W08-World Freedom index](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220222-W08-World%20Freedom%20index)
+  - 2022/09 [20220301-W09-Alternative Fuel Stations](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220301-W09-Alternative%20Fuel%20Stations)
+  - 2022/10 [20220308-W10-Erasmus student mobility](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220308-W10-Erasmus%20student%20mobility)
 <!-- tocstop -->
 
 </details>
