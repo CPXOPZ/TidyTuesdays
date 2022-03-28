@@ -1,0 +1,28 @@
+---
+title: "20220322-W12-Baby names"
+author: "CPXOPZ"
+date: "2022/2/24"
+output: html_document
+---
+
+```{r in}
+tuesdata <- tidytuesdayR::tt_load('2022-03-22')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 12)
+
+babynames <- tuesdata$babynames
+
+# Or read in the data manually
+
+babynames <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-22/babynames.csv')
+
+
+```
+
+```{r out}
+folder_name <- "20220322-W12-Baby names"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
