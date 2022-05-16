@@ -1,0 +1,21 @@
+---
+title: "20220510-W19-NYTimes best sellers"
+author: "CPXOPZ"
+output: html_document
+---
+
+```{r in}
+tuesdata <- tidytuesdayR::tt_load('2022-05-10')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 19)
+
+```
+
+```{r out}
+folder_name <- "20220510-W19-NYTimes best sellers"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+
+```
