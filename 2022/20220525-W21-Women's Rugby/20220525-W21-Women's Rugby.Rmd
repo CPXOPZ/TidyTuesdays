@@ -1,0 +1,20 @@
+---
+title: "20220525-W21-Women's Rugby"
+author: "CPXOPZ"
+output: html_document
+---
+
+```{r in}
+tuesdata <- tidytuesdayR::tt_load('2022-05-24')
+tuesdata <- tidytuesdayR::tt_load(2022, week = 21)
+
+```
+
+```{r out}
+folder_name <- "20220525-W21-Women's Rugby"
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
