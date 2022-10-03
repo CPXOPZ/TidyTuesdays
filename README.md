@@ -92,6 +92,17 @@
   - 2022/08 [20220222-W08-World Freedom index](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220222-W08-World%20Freedom%20index)
   - 2022/09 [20220301-W09-Alternative Fuel Stations](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220301-W09-Alternative%20Fuel%20Stations)
   - 2022/10 [20220308-W10-Erasmus student mobility](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220308-W10-Erasmus%20student%20mobility)
+  - 2022/11 [20220315-W11-CRANBIOC Vignettes](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220315-W11-CRANBIOC%20Vignettes)
+  - 2022/12 [20220322-W12-Baby names](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220322-W12-Baby%20names)
+  - 2022/13 [20220329-W13-Collegiate Sports Budgets](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220329-W13-Collegiate%20Sports%20Budgets)
+  - 2022/14 [20220405-W14-Digital Publications](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220405-W14-Digital%20Publications)
+  - 2022/15 [20220412-W15-Indoor Air Pollution](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220412-W15-Indoor%20Air%20Pollution)
+  - 2022/16 [20220419-W16-Crossword Puzzles and Clues](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220419-W16-Crossword%20Puzzles%20and%20Clues)
+  - 2022/18 [20220503-W18-Solar_Wind utilities](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220503-W18-Solar_Wind%20utilities)
+  - 2022/19 [20220510-W19-NYTimes best sellers](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220510-W19-NYTimes%20best%20sellers)
+  - 2022/20 [20220517-W20-Eurovision](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220517-W20-Eurovision)
+  - 2022/21 [20220525-W21-Women's Rugby](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220525-W21-Women's%20Rugby)
+  - 2022/22 [20220531-W22-Company reputation poll](https://github.com/CPXOPZ/TidyTuesdays/tree/master/2022/20220531-W22-Company%20reputation%20poll)
 <!-- tocstop -->
 
 </details>
@@ -111,3 +122,7 @@
 #### SAS:
 
 ![](yearly/2021/2021_SAS.png)  
+
+### Year -- 2022 (SAS)
+
+![](yearly/2022/2022.png)  

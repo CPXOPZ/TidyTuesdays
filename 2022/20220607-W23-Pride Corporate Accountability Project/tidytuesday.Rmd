@@ -1,0 +1,19 @@
+---
+title: ""
+author: "CPXOPZ"
+output: html_document
+---
+
+```{r in}
+
+
+```
+
+```{r out}
+folder_name <- ""
+data_name <- names(tuesdata)
+
+for (i in seq_along(data_name)) {
+  write.csv(tuesdata[[i]],here::here(paste0("2022/", folder_name),paste0(data_name[i],".csv")), row.names = F, na = "")
+}
+```
